@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -30,4 +32,18 @@ public class ThetaskApplication {
 
 	}
 
+	public boolean checkForUser(String username, String password, ArrayList <User> users) {
+		for (User item : users) {
+			if (item.getUsername().equals(username) && item.getPassword().equals(password)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 }
+
+
+
+	
+
