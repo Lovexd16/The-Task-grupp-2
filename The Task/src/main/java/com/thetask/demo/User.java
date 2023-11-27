@@ -1,14 +1,17 @@
 package com.thetask.demo;
 
+import java.util.List;
+
 public class User {
 
-    private static String existingUser = "existingUser"; //Hårdkodad för en användare som finns
+    private List<String> existingUsernames; //Listan med användare
 
-    public static boolean checkIfUserExists(String username) { //usernamne är tänkt som det namn man skriver in i input fältet när man gör en ny användare
-        if (username.equals(existingUser)) { //Kollar om username matchar med den befintliga användaren
-            return false; //Returnerar false om det matchar
-        } else {
-            return true; //True om det inte matchar
-        }
+    public User(List<String> existingUsernames) { //Konstruktor som tar emot listan med användare. Används i Test
+        this.existingUsernames = existingUsernames;
     }
+
+    public boolean usernameInUse(String username) { //Returnerar true om användarnamnet redan finns, false om användarnamnet inte finns
+        return existingUsernames.contains(username);
+    }
+
 }

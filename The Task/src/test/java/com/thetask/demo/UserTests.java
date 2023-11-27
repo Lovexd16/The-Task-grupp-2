@@ -3,6 +3,9 @@ package com.thetask.demo;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 public class UserTests {
@@ -10,8 +13,17 @@ public class UserTests {
     @Test
 	public void checkForExistingUserTest() {
 		
-        assertTrue(User.checkIfUserExists("notExistingUser")); //assertTrue på den som ska bli true (när namnen inte matchar)
+       List<String> currentUsers = Arrays.asList("Love", "Bajram", "Viktor"); //Hårdkodade användate som finns i listan
 
-        assertFalse(User.checkIfUserExists("existingUser")); //assertFalse på den som ska bli false (när namnen matchar)
+       User user = new User(currentUsers); 
+
+       //Testar namnen som finns i listan, som ska bli true
+       assertTrue(user.usernameInUse("Love"));
+       assertTrue(user.usernameInUse("Bajram"));
+       assertTrue(user.usernameInUse("Viktor"));
+
+       //Testar namn som inte finns i listan, som ska bli false
+       assertFalse(user.usernameInUse("Jacob"));
+       assertFalse(user.usernameInUse("Christopher"));
 	}
 }
