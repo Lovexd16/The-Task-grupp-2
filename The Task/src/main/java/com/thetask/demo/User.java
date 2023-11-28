@@ -1,6 +1,7 @@
 package com.thetask.demo;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -18,9 +19,28 @@ public class User {
     private String username;
     private String password;
 
-    public User (String username, String password) {
+    private ArrayList<ListOfToDos> listOfLists;
+
+    public User (String username, String password, ArrayList<ListOfToDos> listOfLists) {
         this.username = username;
         this.password = password;
+        this.listOfLists = new ArrayList<>();
+    }
+
+    public List<String> getExistingUsernames() {
+        return existingUsernames;
+    }
+
+    public void setExistingUsernames(List<String> existingUsernames) {
+        this.existingUsernames = existingUsernames;
+    }
+
+    public ArrayList<ListOfToDos> getListOfLists() {
+        return listOfLists;
+    }
+
+    public void setListOfLists(ArrayList<ListOfToDos> listOfLists) {
+        this.listOfLists = listOfLists;
     }
 
     public String getUsername() {
