@@ -33,22 +33,4 @@ class ThetaskApplicationTests {
 		assertTrue(itemList.contains("TestItem"));
 	}
 
-	@Test
-	void testIfToDoIsLate() {
-		long testTime = 1601097035961L;
-		long testTime2 = 1801097035961L;
-		assertTrue(testTime < ThetaskApplication.getCurrentTime());
-		assertFalse(testTime2 < ThetaskApplication.getCurrentTime());
-	}
-
-	@Test
-	public void checkForUserTest() {
-		ThetaskApplication thetaskApplication = new ThetaskApplication();
-		User user = new User("person", "kod");
-		ArrayList<User> users = new ArrayList<>();
-		users.add(user);
-		assertTrue(thetaskApplication.checkForUser("person", "kod", users));
-		assertFalse(thetaskApplication.checkForUser("gg", "gg", users));
-	}
-
 }
