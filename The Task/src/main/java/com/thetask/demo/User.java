@@ -1,46 +1,36 @@
 package com.thetask.demo;
 
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class User {
 
-    private List<String> existingUsernames; //Listan med användare
+    // private static List<String> existingUsernames; //Listan med användare
 
-    public User(List<String> existingUsernames) { //Konstruktor som tar emot listan med användare. Används i Test
-        this.existingUsernames = existingUsernames;
-    }
+    // public User(List<String> existingUsernames) { //Konstruktor som tar emot
+    // listan med användare. Används i Test
+    // this.existingUsernames = existingUsernames;
+    // }
 
-    public boolean usernameInUse(String username) { //Returnerar true om användarnamnet redan finns, false om användarnamnet inte finns
-        return existingUsernames.contains(username);
-    }
+    // public boolean usernameInUse(String username) { //Returnerar true om
+    // användarnamnet redan finns, false om användarnamnet inte finns
+    // return existingUsernames.contains(username);
+    // }
 
     private String username;
     private String password;
 
-    private ArrayList<ListOfToDos> listOfLists;
+    ArrayList<ArrayList<ToDo>> toDoLists;
 
-    public User (String username, String password, ArrayList<ListOfToDos> listOfLists) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.listOfLists = new ArrayList<>();
+        this.toDoLists = new ArrayList<>();
+
     }
 
-    public List<String> getExistingUsernames() {
-        return existingUsernames;
-    }
+    public void addToDoList(ArrayList<ToDo> toDoList) {
+        toDoLists.add(toDoList); // Stoppar in To Do-lista i användarens toDoLists
 
-    public void setExistingUsernames(List<String> existingUsernames) {
-        this.existingUsernames = existingUsernames;
-    }
-
-    public ArrayList<ListOfToDos> getListOfLists() {
-        return listOfLists;
-    }
-
-    public void setListOfLists(ArrayList<ListOfToDos> listOfLists) {
-        this.listOfLists = listOfLists;
     }
 
     public String getUsername() {
@@ -59,5 +49,12 @@ public class User {
         this.password = password;
     }
 
+    public ArrayList<ArrayList<ToDo>> getToDoLists() {
+        return toDoLists;
+    }
+
+    public void setToDoLists(ArrayList<ArrayList<ToDo>> toDoLists) {
+        this.toDoLists = toDoLists;
+    }
 
 }
