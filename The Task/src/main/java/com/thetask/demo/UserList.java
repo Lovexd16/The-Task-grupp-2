@@ -3,10 +3,24 @@ package com.thetask.demo;
 import java.util.ArrayList;
 
 public class UserList {
-    private ArrayList<User> userList = new ArrayList<>();
+    public ArrayList<User> userList = new ArrayList<>();
 
     public void addUser(String username, String password) {
-        userList.add(new User(username, password, null));
+        userList.add(new User(username, password));
+    }
+
+    public void addToDoListForUser(String username, ArrayList<ToDo> toDoList) {
+
+        for (User user : userList) {
+            if (user.getUsername() == username) {
+                user.addToDoList(toDoList);
+            }
+        }
+    }
+
+    public boolean checkUserNameExists(String username) {
+
+        return false;
     }
 
     public ArrayList<User> getUserList() {
@@ -16,5 +30,5 @@ public class UserList {
     public void setUserList(ArrayList<User> userList) {
         this.userList = userList;
     }
-    
+
 }

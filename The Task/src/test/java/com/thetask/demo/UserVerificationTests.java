@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 public class UserVerificationTests {
-    
-    @Test
+
+	@Test
 	public void checkForUserTest() {
-		User user = new User("person", "kod", null);
+		User user = new User("person", "kod");
 		ArrayList<User> users = new ArrayList<>();
 		users.add(user);
 		assertTrue(UserVerification.checkForUser("person", "kod", users));
