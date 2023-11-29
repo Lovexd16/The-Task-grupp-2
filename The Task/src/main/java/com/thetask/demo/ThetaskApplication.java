@@ -25,6 +25,7 @@ public class ThetaskApplication {
 		lennart.addToDoList(kallesToDoList);
 
 		System.out.println("Lennarts storlek med Kalle i sig " + lennart.toDoLists.size());
+		System.out.println(lennart.getToDoLists().get(0).get(0).getName());
 
 		System.out.println("Städa tid: " + stada.getTime());
 		System.out.println("Städa namn: " + stada.getName());
