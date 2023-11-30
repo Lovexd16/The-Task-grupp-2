@@ -14,3 +14,9 @@ function addTask() {
     taskInput.value = '';
     timeInput.value = '';
 }
+
+function logout() {
+    localStorage.removeItem('loggedInAs');
+
+    window.location.href = "/login";
+}
