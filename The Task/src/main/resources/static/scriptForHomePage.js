@@ -14,6 +14,7 @@ function addTask() {
     taskInput.value = '';
     timeInput.value = '';
 }
+
 function newListBtn() {
     var scrollBox = document.querySelector('.scrollBox');
     var newListName = prompt('Name of your new list:');
@@ -24,6 +25,8 @@ function newListBtn() {
         scrollBox.appendChild(newList);
     }
 }
+
+
 function logout() {
     localStorage.removeItem('loggedInAs');
     window.location.href = "/login";
