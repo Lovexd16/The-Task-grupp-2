@@ -10,9 +10,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="title"></title>
     <script src="scriptForHomePage.js" defer></script>
+    <link rel="stylesheet" href="homeStyle.css">
     
 </head>
 <body>
-    
+    <div>
+        <input type="text" id="taskInput" placeholder="Todo">
+        <input type="text" id="timeInput" placeholder="Date">
+        <button onclick="addTask()">Add</button>
+    </div>
+    <textarea id="toDoArea" rows="40" cols="52" readonly></textarea>
+    <textarea id="doneArea" rows="40" cols="52" readonly></textarea>
+
+        <div id = "logoutBtn">
+            <button onclick="logout()">Log out</button>
+        </div>
 </body>
 </html>
