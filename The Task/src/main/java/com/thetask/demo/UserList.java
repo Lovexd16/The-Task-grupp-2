@@ -9,14 +9,14 @@ public class UserList {
         userList.add(new User(username, password));
     }
 
-    public void addToDoListForUser(String username, ArrayList<ToDo> toDoList) {
+    // public void addToDoListForUser(String username, ArrayList<ToDo> toDoList) {
 
-        for (User user : userList) {
-            if (user.getUsername() == username) {
-                user.addToDoList(toDoList);
-            }
-        }
-    }
+    //     for (User user : userList) {
+    //         if (user.getUsername() == username) {
+    //             user.addToDoList(toDoList);
+    //         }
+    //     }
+    // }
 
     public boolean checkUserNameExists(String username) {
 

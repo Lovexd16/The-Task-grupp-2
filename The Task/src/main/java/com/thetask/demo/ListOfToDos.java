@@ -1,16 +1,35 @@
-// package com.thetask.demo;
+package com.thetask.demo;
 
-// import java.util.ArrayList;
+import java.util.ArrayList;
 
-// public class ListOfToDos {
+public class ListOfToDos {
 
-// private ArrayList<ToDo> ListOfToDos;
+    private ArrayList<ToDo> ListOfToDos;
+    private String nameOfList;
 
-// public void putToDosInList(String name, long time) {
-// ListOfToDos.add(new ToDo(name, time, false));
-// }
-// }
+    public ListOfToDos (ArrayList<ToDo> ListOfToDos, String nameOfList) {
+        this.ListOfToDos = new ArrayList<>();
+        this.nameOfList = nameOfList;
+    }
 
-// Gör samma sak som "ToDo handla = new ToDo( *String* , *long* , *boolean*)" -
-// rad 17 - 21 i Main
-// Går att anropa från javas standardkommandon
+    public ArrayList<ToDo> getListOfToDos() {
+        return ListOfToDos;
+    }
+
+    public void setListOfToDos(ArrayList<ToDo> listOfToDos) {
+        ListOfToDos = listOfToDos;
+    }
+
+    public String getNameOfList() {
+        return nameOfList;
+    }
+
+    public void setNameOfList(String nameOfList) {
+        this.nameOfList = nameOfList;
+    }
+
+    
+    // public void putToDosInList(String name, long time) {
+    // ListOfToDos.add(new ToDo(name, time, false));
+    // }
+}

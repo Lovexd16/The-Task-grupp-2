@@ -18,8 +18,7 @@ public class User {
 
     private String username;
     private String password;
-
-    ArrayList<ArrayList<ToDo>> toDoLists;
+    private ArrayList<ListOfToDos> toDoLists;
 
     public User(String username, String password) {
         this.username = username;
@@ -28,10 +27,10 @@ public class User {
 
     }
 
-    public void addToDoList(ArrayList<ToDo> toDoList) {
-        toDoLists.add(toDoList); // Stoppar in To Do-lista i användarens toDoLists
+    // public void addToDoList(ArrayList<ToDo> toDoList) {
+    //     toDoLists.add(toDoList); // Stoppar in To Do-lista i användarens toDoLists
 
-    }
+    // }
 
     public String getUsername() {
         return username;
@@ -49,11 +48,11 @@ public class User {
         this.password = password;
     }
 
-    public ArrayList<ArrayList<ToDo>> getToDoLists() {
+    public ArrayList<ListOfToDos> getToDoLists() {
         return toDoLists;
     }
 
-    public void setToDoLists(ArrayList<ArrayList<ToDo>> toDoLists) {
+    public void setToDoLists(ArrayList<ListOfToDos> toDoLists) {
         this.toDoLists = toDoLists;
     }
 
