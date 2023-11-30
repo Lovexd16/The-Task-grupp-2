@@ -1,15 +1,41 @@
 textarea{
     
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: large;
-    user-select: none;
-    resize: none;
-    background-color: rgb(105, 120, 148);
-}
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: large;
+        user-select: none;
+        resize: none;
+        background-color: rgb(105, 120, 148);
+        width: 25vw;
+        height: 70vh;
+        margin-bottom: 10px;
+    }
+    
 body{
     background-color: rgb(77, 77, 110);
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 100%;
+    margin:0;
+    padding:0;
+
 }
 #logoutBtn {
-    
+    position: fixed;
+    top: 10px;
+    right: 10px;
+}
+#newListBtn {
+    position: fixed;
+    bottom:500px;
+    right: 500px;
+}
+.scrollBox {
+    background-color: rgb(105, 120, 148);
+    width: 300px;
+    height: 200px; 
+    overflow: auto;
+    padding: 5px;
+    margin: 5px;
+    position: fixed;
+    bottom: 270px;
+    right: 360px;
 }
