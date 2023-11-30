@@ -8,7 +8,9 @@ function addTask() {
     var todoArea = document.getElementById('toDoArea');
     var doneArea = document.getElementById('doneArea')
     var taskText = taskInput.value;
-    var timeText = + ' - ' + timeText + '\n';
+    var timeText = timeInput.value;
+    
+    todoArea.value += taskText + '-' + timeText +'\n';
     taskInput.value = '';
     timeInput.value = '';
 }
