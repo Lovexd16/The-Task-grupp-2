@@ -4,17 +4,6 @@ import java.util.ArrayList;
 
 public class User {
 
-    // private static List<String> existingUsernames; //Listan med användare
-
-    // public User(List<String> existingUsernames) { //Konstruktor som tar emot
-    // listan med användare. Används i Test
-    // this.existingUsernames = existingUsernames;
-    // }
-
-    // public boolean usernameInUse(String username) { //Returnerar true om
-    // användarnamnet redan finns, false om användarnamnet inte finns
-    // return existingUsernames.contains(username);
-    // }
 
     private String username;
     private String password;
@@ -26,11 +15,6 @@ public class User {
         this.toDoLists = new ArrayList<>();
 
     }
-
-    // public void addToDoList(ArrayList<ToDo> toDoList) {
-    //     toDoLists.add(toDoList); // Stoppar in To Do-lista i användarens toDoLists
-
-    // }
 
     public String getUsername() {
         return username;

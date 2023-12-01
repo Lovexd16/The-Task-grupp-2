@@ -28,8 +28,4 @@ public class ListOfToDos {
         this.nameOfList = nameOfList;
     }
 
-    
-    // public void putToDosInList(String name, long time) {
-    // ListOfToDos.add(new ToDo(name, time, false));
-    // }
 }
