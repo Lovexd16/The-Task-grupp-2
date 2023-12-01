@@ -30,7 +30,8 @@ public class ThetaskApplication {
 		
 		System.out.println("\n");
 
-		System.out.println(UserList.userList.get(0).getToDoLists().get(0).getNameOfList());
+		System.out.println(UserList.userList.get(0).getToDoLists().get(1).getListOfToDos().get(0).getName());
+		
 		// ToDo stada = new ToDo("Städa", CurrentTime.getCurrentTime(), false);
 		// ToDo tvatta = new ToDo("Tvätta", CurrentTime.getCurrentTime() - 5000, true);
 		// ArrayList<ToDo> kallesToDoList = new ArrayList<>();
