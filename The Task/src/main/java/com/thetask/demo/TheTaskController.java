@@ -54,6 +54,6 @@ public class TheTaskController {
         }
         System.out.println("hittar inte användare");
         model.addAttribute("errorMessage", "Fel användarnamn eller lösenord");
-        return "loginPage";
+        return "redirect:/";
     }
 }
