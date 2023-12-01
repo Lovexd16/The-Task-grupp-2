@@ -10,22 +10,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class TheTaskController {
 
     @GetMapping("/")
-    String getStart () {
-        return "homePage";
-    }
-
-    @GetMapping("/login")
-    String getLogin() {
+    String getStart() {
         return "loginPage";
     }
 
-    @PostMapping("/home")
-    String postNewUser(@RequestParam("username2") String username, @RequestParam("password2") String password, Model model) {
-        for (User user : UserList.userList){
+    @GetMapping("/home")
+    String getLogin() {
+        return "homePage";
+    }
+
+    @PostMapping("/newUser")
+    String postNewUser(@RequestParam("username2") String username, @RequestParam("password2") String password,
+            Model model) {
+        for (User user : UserList.userList) {
             if (user.getUsername().equals(username)) {
                 model.addAttribute("errorMessage", "Finns redan sådan användare");
                 System.out.println("Finns redan sån user");
-                return "loginPage";
+                return "redirect:/";
             }
         }
 
@@ -35,26 +36,24 @@ public class TheTaskController {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 model.addAttribute("listOfLists", user.getToDoLists());
                 System.out.println("Lade till ny användare");
-                return "homePage";
+                return "redirect:/home";
             }
         }
         return "homePage";
     }
 
-
-    @PostMapping("/myToDos")
-    String postLogin (@RequestParam("username1") String username, @RequestParam("password1") String password, Model model) {
+    @PostMapping("/loginUser")
+    String postLogin(@RequestParam("username1") String username, @RequestParam("password1") String password,
+            Model model) {
         for (User user : UserList.userList) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 model.addAttribute("listOfLists", user.getToDoLists());
                 System.out.println("loggar in");
-                return "homePage";
-            } 
+                return "redirect:/home";
+            }
         }
         System.out.println("hittar inte användare");
         model.addAttribute("errorMessage", "Fel användarnamn eller lösenord");
         return "loginPage";
     }
 }
-
-
