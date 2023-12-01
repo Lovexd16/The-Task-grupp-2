@@ -29,5 +29,5 @@ function newListBtn() {
 
 function logout() {
     localStorage.removeItem('loggedInAs');
-    window.location.href = "/login";
+    window.location.href = "/";
 }
