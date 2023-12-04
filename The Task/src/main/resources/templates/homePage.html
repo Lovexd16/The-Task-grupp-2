@@ -1,17 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script >
-        if (!localStorage.getItem("loggedInAs")) {
-            window.location.href = "/login";
-        }
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="title"></title>
     <script src="scriptForHomePage.js" defer></script>
-    <link rel="stylesheet" href="homeStyle.css">
-    
+    <link rel="stylesheet" href="homeStyle.css"> 
 </head>
 <body>
     <div>
@@ -19,18 +13,23 @@
         <input type="text" id="timeInput" placeholder="Date">
         <button onclick="addTask()">Add</button>
     </div>
-    <textarea id="toDoArea" rows="40" cols="52" readonly></textarea>
-    <textarea id="doneArea" rows="40" cols="52" readonly></textarea>
 
-        <div id = "logoutBtn">
-            <button onclick="logout()">Log out</button>
+    <div class = "areaContainer">
+        <div id="toDoArea" class="toDoArea">
+            <div class="areaHeader">Todo</div>
         </div>
+        <div id="doneArea" class="doneArea">
+            <div class="areaHeader">Done</div>
+        </div>
+        <div class="scrollBox">
+            <div class ="listHeader">Lists</div>
+            <button id="newListBtn" onclick="newListBtn()">New List</button>
+        </div>
+    </div>
 
-        <div id = "newListBtn">
-            <button onclick ="newListBtn()">New List</button>
-        </div>
-        <div class="scrollBox"></div>
-           
-       
+    <div id = "logoutBtn">
+        <button onclick="logout()">Log out</button>
+    </div>
+         
 </body>
 </html>
