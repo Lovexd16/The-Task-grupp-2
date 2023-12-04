@@ -57,7 +57,6 @@ function deleteTask(output) {
     doneArea.removeChild(output);
 }
 
-
 function newListBtn() {
     var scrollBox = document.querySelector('.scrollBox');
     var newListName = prompt('Name of your new list:');
