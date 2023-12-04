@@ -22,7 +22,7 @@ public class TheTaskController {
     @PostMapping("/newUser")
     String postNewUser(@RequestParam("username2") String username, @RequestParam("password2") String password,
             Model model) {
-        for (User user : ThetaskApplication.userlist.getUserList() ) {
+        for (User user : ThetaskApplication.userlist.getUserList()) {
             if (user.getUsername().equals(username)) {
                 model.addAttribute("errorMessage", "Finns redan sådan användare");
                 System.out.println("Finns redan sån user");
@@ -57,8 +57,15 @@ public class TheTaskController {
         return "redirect:/";
     }
 
+    @PostMapping("/removeToDo")
+    ListOfToDos removeToDo(@RequestParam("removeToDo") String toDo) {
+        return "rdirect:/home";
+
+    }
+
     // @PostMapping("/addNewList")
-    // String postAddNewList (@RequestParam("username") String username, @RequestParam("newListName") String newListName) {
-        
+    // String postAddNewList (@RequestParam("username") String username,
+    // @RequestParam("newListName") String newListName) {
+
     // }
 }

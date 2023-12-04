@@ -28,6 +28,7 @@ public class ToDo {
     }
 
     public boolean isDone() {
+        isDone = true;
         return isDone;
     }
 
@@ -35,5 +36,4 @@ public class ToDo {
         this.isDone = isDone;
     }
 
-    
 }

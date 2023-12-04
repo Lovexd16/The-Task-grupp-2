@@ -1,19 +1,27 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="title"></title>
     <script src="scriptForHomePage.js" defer></script>
+
     <link rel="stylesheet" href="homeStyle.css"> 
+
 </head>
+
 <body>
+
+ <form method="post" th:action="@{/addToDo}">
     <div class = "inputs">
         <input type="text" id="taskInput" placeholder="Todo">
         <input type="text" id="timeInput" placeholder="Date">
         <button onclick="addTask()">Add</button>
     </div>
+ </form>
     
     <div class = "areaContainer">
         <div id="toDoArea" class="toDoArea">
@@ -33,4 +41,5 @@
     </div>
          
 </body>
+
 </html>
