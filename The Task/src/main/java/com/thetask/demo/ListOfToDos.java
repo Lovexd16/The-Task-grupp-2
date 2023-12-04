@@ -12,55 +12,57 @@ public class ListOfToDos {
         this.nameOfList = nameOfList;
     }
 
-    // FIXA DETTA!!! KNAS!!! *********************************
-    public void removeToDo(String username, String nameOfList, String nameOfToDo, long timeOfToDo) {
+    public static void removeToDo(String username, String nameOfList, String nameOfToDo, long timeOfToDo) {
         for (User user : ThetaskApplication.userlist.getUserList()) {
             if (user.getUsername().equals(username)) {
                 for (ListOfToDos list : user.getToDoLists()) {
-
                     if (list.getNameOfList().equals(nameOfList)) {
-                        user.getToDoLists().get(user.getToDoLists().indexOf(list)).getListOfToDos().remove()/*
-                                                                                                             * .remove()
-                                                                                                             * loopa
-                                                                                                             * igenom
-                                                                                                             * listan
-                                                                                                             * och
-                                                                                                             * ta bort
-                                                                                                             * om
-                                                                                                             * nameOfToDo
-                                                                                                             * ==
-                                                                                                             * nameOfToDo
-                                                                                                             */;
+                        for (ToDo todo : list.getListOfToDos()) {
+                            if (todo.getName().equals(nameOfToDo)) {
+                                list.getListOfToDos().remove(todo);
+                            }
+                        }
                     }
                 }
             }
         }
     }
 
-    // FIXA DETTA!!! KNAS!!! *********************************
-    public void editToDoTime(String username, String nameOfList, String nameOfToDo, long timeOfToDo) {
+    public long editToDoTime(String username, String nameOfList, String nameOfToDo, long timeOfToDo) {
         for (User user : ThetaskApplication.userlist.getUserList()) {
             if (user.getUsername().equals(username)) {
                 for (ListOfToDos list : user.getToDoLists()) {
                     if (list.getNameOfList().equals(nameOfList)) {
-                        user.getToDoLists().get(user.getToDoLists().indexOf(list)).getListOfToDos();
+                        for (ToDo todo : list.getListOfToDos()) {
+                            if (todo.getName().equals(nameOfToDo)) {
+                                list.getListOfToDos().get(list.getListOfToDos().indexOf(todo)).setTime(timeOfToDo);
+                                return timeOfToDo;
+                            }
+                        }
                     }
                 }
             }
         }
+        return timeOfToDo;
     }
 
-    // FIXA DETTA!!! KNAS!!! *********************************
-    public void editToDoName(String username, String nameOfList, String nameOfToDo, long timeOfToDo) {
+    public String editToDoName(String username, String nameOfList, String nameOfToDo, long timeOfToDo) {
         for (User user : ThetaskApplication.userlist.getUserList()) {
             if (user.getUsername().equals(username)) {
                 for (ListOfToDos list : user.getToDoLists()) {
                     if (list.getNameOfList().equals(nameOfList)) {
-                        user.getToDoLists().get(user.getToDoLists().indexOf(list)).getListOfToDos();
+                        for (ToDo todo : list.getListOfToDos()) {
+                            if (todo.getName().equals(nameOfToDo)) {
+                                list.getListOfToDos().get(list.getListOfToDos().indexOf(todo)).setName(nameOfToDo);
+                                return nameOfToDo;
+
+                            }
+                        }
                     }
                 }
             }
         }
+        return nameOfToDo;
     }
 
     public ArrayList<ToDo> getListOfToDos() {

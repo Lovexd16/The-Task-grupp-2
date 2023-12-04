@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <script >
+    <script>
         if (!localStorage.getItem("loggedInAs")) {
             window.location.href = "/login";
         }
@@ -11,26 +12,30 @@
     <title id="title"></title>
     <script src="scriptForHomePage.js" defer></script>
     <link rel="stylesheet" href="homeStyle.css">
-    
+
 </head>
+
 <body>
-    <div>
-        <input type="text" id="taskInput" placeholder="Todo">
-        <input type="text" id="timeInput" placeholder="Date">
-        <button onclick="addTask()">Add</button>
-    </div>
+    <form method="post" th:action="@{/addToDo}">
+        <div>
+            <input type="text" id="taskInput" placeholder="Todo">
+            <input type="text" id="timeInput" placeholder="Date">
+            <button onclick="addTask()">Add</button>
+        </div>
+    </form>
     <textarea id="toDoArea" rows="40" cols="52" readonly></textarea>
     <textarea id="doneArea" rows="40" cols="52" readonly></textarea>
 
-        <div id = "logoutBtn">
-            <button onclick="logout()">Log out</button>
-        </div>
+    <div id="logoutBtn">
+        <button onclick="logout()">Log out</button>
+    </div>
 
-        <div id = "newListBtn">
-            <button onclick ="newListBtn()">New List</button>
-        </div>
-        <div class="scrollBox"></div>
-           
-       
+    <div id="newListBtn">
+        <button onclick="newListBtn()">New List</button>
+    </div>
+    <div class="scrollBox"></div>
+
+
 </body>
+
 </html>
