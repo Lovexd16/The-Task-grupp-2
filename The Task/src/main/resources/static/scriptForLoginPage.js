@@ -14,5 +14,11 @@ loginBtn.addEventListener("click", function () {
     localStorage.setItem("loggedInAs", usernameField2.value)
 });
 
+let listclick = document.getElementById("listclick")
+
+listclick.addEventListener("click", () =>{
+    
+} )
+
 //MÅSTE SKRIVAS OM OCH FIXAS SÅ ATT DEN SPARAS I LOCAL STORAGE BARA EFTER ATT ANVÄNDAREN LYCKATS LOGGA IN ELLER LYCKATS SKAPA KONTO 
 //KANSKE VIKTIGT, VI KAN TA UPP DET TILLSAMMANS

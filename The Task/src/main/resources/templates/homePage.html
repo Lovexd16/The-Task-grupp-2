@@ -15,6 +15,28 @@
 
 <body>
 
+    <h1>Userlists</h1>
+
+    <div class="scrollBox">
+        <ul>
+            <li class="List" th:id="${lists.id}" th:each="lists : ${userLists}"><br/>
+                <a th:href="@{/list/{nameoflist}(nameoflist=${lists.nameOfList})}"><br/>
+                     <span th:text="${lists.nameOfList}"></span>
+                     <div>
+                        <a th:href = "@{/removeList/{listid}(listid=${lists.id})}">
+                            <button id="removeBtn">Ta bort</button></a>
+                     </div>        
+            </li>
+        </ul>
+    </div>
+    <div class="addList">
+        <form id="addForm" method="post" th:action="@{/adduserList}" th:object="${newList}">  
+            Listnamn:</br/>
+            <input type="text" id="listNameInput" th:field="*{nameOfList}" required><br/><br/>
+            <button id="addBtn"type="submit">Lägg till lista</button>
+        </form>
+    </div>
+
  <form method="post" th:action="@{/addToDo}">
     <div class = "inputs">
         <input type="text" id="taskInput" placeholder="Todo">
