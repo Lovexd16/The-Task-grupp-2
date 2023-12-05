@@ -20,6 +20,7 @@ function addTask() {
         dateInput.value = '';
         timeInput.value = '';
         return;
+        //liten ändring ta bort detta
     }
 
     var output = document.createElement('div');
