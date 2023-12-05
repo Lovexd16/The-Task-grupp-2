@@ -1,13 +1,26 @@
 package com.thetask.demo;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class TheTaskController {
+
+    static final List<ListOfToDos> userLists = new ArrayList<>();
+    static final List<ToDo> todoList = new ArrayList<>();
+
+    static {
+        userLists.add(new ListOfToDos(null, "Renovering", UUID.randomUUID()));
+    }
 
     @GetMapping("/")
     String getStart() {
@@ -15,8 +28,35 @@ public class TheTaskController {
     }
 
     @GetMapping("/home")
-    String getLogin() {
+    String getLogin(Model model) {
+        model.addAttribute("userLists", userLists);
+        model.addAttribute("newList", new ListOfToDos(null, null, UUID.randomUUID()));
         return "homePage";
+    }
+
+    @PostMapping("/adduserList")
+    String newUserList(@RequestParam("nameOfList") String nameOfList) {
+        userLists.add(new ListOfToDos(new ArrayList<ToDo>(), nameOfList, UUID.randomUUID()));
+
+        return "redirect:/home";
+    }
+
+    @GetMapping("/removeList/{listid}")
+    String removeList(@PathVariable UUID listid) {
+        userLists.removeIf(lists -> lists.getId() == listid);
+        return "redirect:/home";
+    }
+
+    @GetMapping("/list/{nameOfList}")
+    String getList(@PathVariable String nameOfList, Model model) {
+
+        for (ListOfToDos list : TheTaskController.userLists) {
+            if (list.getNameOfList().equals(nameOfList)) {
+                model.addAttribute("lists", new ListOfToDos(list.getListOfToDo(), list.getNameOfList(), list.getId()));
+                return "list";
+            }
+        }
+        return "list";
     }
 
     @PostMapping("/newUser")
@@ -56,6 +96,9 @@ public class TheTaskController {
         model.addAttribute("errorMessage", "Fel användarnamn eller lösenord");
         return "redirect:/";
     }
+
+
+   
 
 
     @PostMapping("/addNewList")
@@ -119,6 +162,7 @@ public class TheTaskController {
         }
         return "redirect:/home";
     }
+
 
     @PostMapping("/editToDoTime") 
     String postEditToDoTime (@RequestParam("username") String username, @RequestParam("listName") String listName,

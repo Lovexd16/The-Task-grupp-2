@@ -1,15 +1,18 @@
 package com.thetask.demo;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class ListOfToDos {
 
-    private ArrayList<ToDo> ListOfToDos;
+    private ArrayList<ToDo> ListOfToDo;
     private String nameOfList;
+    private UUID id;
 
-    public ListOfToDos(ArrayList<ToDo> ListOfToDos, String nameOfList) {
-        this.ListOfToDos = new ArrayList<>();
+    ListOfToDos(ArrayList<ToDo> ListOfToDo, String nameOfList, UUID id) {
+        this.ListOfToDo = new ArrayList<>();
         this.nameOfList = nameOfList;
+        this.id = id;
     }
 
     public static void removeToDo(String username, String nameOfList, String nameOfToDo) {
@@ -17,9 +20,9 @@ public class ListOfToDos {
             if (user.getUsername().equals(username)) {
                 for (ListOfToDos list : user.getToDoLists()) {
                     if (list.getNameOfList().equals(nameOfList)) {
-                        for (ToDo todo : list.getListOfToDos()) {
+                        for (ToDo todo : list.getListOfToDo()) {
                             if (todo.getName().equals(nameOfToDo)) {
-                                list.getListOfToDos().remove(todo);
+                                list.getListOfToDo().remove(todo);
                             }
                             //kanske utöka metod till att kolla mot tiden oxå, kan man ha 2 same-name todos då kanske?
                         }
@@ -34,9 +37,12 @@ public class ListOfToDos {
             if (user.getUsername().equals(username)) {
                 for (ListOfToDos list : user.getToDoLists()) {
                     if (list.getNameOfList().equals(nameOfList)) {
-                        for (ToDo todo : list.getListOfToDos()) {
+                        for (ToDo todo : list.getListOfToDo()) {
                             if (todo.getName().equals(nameOfToDo)) {
-                                list.getListOfToDos().get(list.getListOfToDos().indexOf(todo)).setTime(newTimeOfToDo);
+
+                                list.getListOfToDo().get(list.getListOfToDo().indexOf(todo)).setTime(timeOfToDo);
+                                
+
                             }
                         }
                     }
@@ -50,9 +56,13 @@ public class ListOfToDos {
             if (user.getUsername().equals(username)) {
                 for (ListOfToDos list : user.getToDoLists()) {
                     if (list.getNameOfList().equals(nameOfList)) {
-                        for (ToDo todo : list.getListOfToDos()) {
+                        for (ToDo todo : list.getListOfToDo()) {
                             if (todo.getName().equals(nameOfToDo)) {
-                                list.getListOfToDos().get(list.getListOfToDos().indexOf(todo)).setName(newNameOfToDo);
+
+                                list.getListOfToDo().get(list.getListOfToDo().indexOf(todo)).setName(nameOfToDo);
+                               
+
+                                
                             }
                         }
                     }
@@ -60,6 +70,7 @@ public class ListOfToDos {
             }
         }
     }
+
 
     public static void setToDoAsDone(String username, String nameOfList, String nameOfToDo) {
         for (User user : ThetaskApplication.userlist.getUserList()) {
@@ -77,12 +88,12 @@ public class ListOfToDos {
         }
     }
 
-    public ArrayList<ToDo> getListOfToDos() {
-        return ListOfToDos;
+    public ArrayList<ToDo> getListOfToDo() {
+        return ListOfToDo;
     }
 
-    public void setListOfToDos(ArrayList<ToDo> listOfToDos) {
-        ListOfToDos = listOfToDos;
+    public void setListOfToDo(ArrayList<ToDo> listOfToDo) {
+        ListOfToDo = listOfToDo;
     }
 
     public String getNameOfList() {
@@ -91,6 +102,14 @@ public class ListOfToDos {
 
     public void setNameOfList(String nameOfList) {
         this.nameOfList = nameOfList;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
 }

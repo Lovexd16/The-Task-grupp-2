@@ -1,6 +1,7 @@
 package com.thetask.demo;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,8 +22,6 @@ public class ThetaskApplication {
 		addNewListForUser("Kalle", "Hushållssyssllur");
 		addNewListForUser("Kalle", "Ärenden");
 
-
-
 		addNewListForUser("Balle", "Shoppa");
 		addNewListForUser("Balle", "Träna");
 
@@ -35,7 +34,7 @@ public class ThetaskApplication {
 
 		addNewToDoForUser("Kalle", "Ärenden", "Inget", 2);
 		addNewToDoForUser("Balle", "Träna", "Axlar", 15);
-		System.out.println(userlist.getUserList().get(1).getToDoLists().get(1).getListOfToDos().get(0).getName());
+		System.out.println(userlist.getUserList().get(1).getToDoLists().get(1).getListOfToDo().get(0).getName());
 
 		addNewToDoForUser("Balle", "Träna", "Ben", 15);
 		System.out.println("Balles innehåll i listan innan borttagning av axlar i listan träna");
@@ -43,7 +42,7 @@ public class ThetaskApplication {
 			if (user.getUsername().equals("Balle")) {
 				for (ListOfToDos list : user.getToDoLists()) {
 					if (list.getNameOfList().equals("Träna")) {
-						for (ToDo todo : list.getListOfToDos()) {
+						for (ToDo todo : list.getListOfToDo()) {
 							System.out.println(todo.getName());
 						}
 					}
@@ -58,7 +57,7 @@ public class ThetaskApplication {
 			if (user.getUsername().equals("Balle")) {
 				for (ListOfToDos list : user.getToDoLists()) {
 					if (list.getNameOfList().equals("Träna")) {
-						for (ToDo todo : list.getListOfToDos()) {
+						for (ToDo todo : list.getListOfToDo()) {
 							System.out.println(todo.getName());
 						}
 					}
@@ -66,14 +65,20 @@ public class ThetaskApplication {
 			}
 		}
 
-		System.out.println(userlist.getUserList().get(0).getToDoLists().get(1).getListOfToDos().get(0).getName());
+		System.out.println(userlist.getUserList().get(0).getToDoLists().get(1).getListOfToDo().get(0).getName());
 
+		removeListForUser("Kalle", "Ärenden"); // Tar bort listan efter den skapades
+
+
+		
+		
 
 		System.out.println("---Test för ta bort lista metoden---");
 		removeListForUser("Kalle", "Ärenden"); //Tar bort listan efter den skapades. Kommentera in eller ut för att testa
 
 		//Skriver ut alla listor kalle har
 		for (User user : userlist.getUserList()) { 
+
 			if (user.getUsername().equals("Kalle")) {
 				System.out.println("Namn på Kalles listor: ");
 				for (ListOfToDos toDoList : user.getToDoLists()) {
@@ -120,7 +125,7 @@ public class ThetaskApplication {
 	public static void addNewListForUser(String username, String nameOfList) {
 		for (User user : userlist.getUserList()) {
 			if (user.getUsername().equals(username)) {
-				user.getToDoLists().add((new ListOfToDos(null, nameOfList)));
+				user.getToDoLists().add((new ListOfToDos(null, nameOfList, UUID.randomUUID())));
 			}
 		}
 	}
@@ -161,7 +166,7 @@ public class ThetaskApplication {
 			if (user.getUsername().equals(username)) {
 				for (ListOfToDos list : user.getToDoLists()) {
 					if (list.getNameOfList().equals(nameOfList)) {
-						user.getToDoLists().get(user.getToDoLists().indexOf(list)).getListOfToDos()
+						user.getToDoLists().get(user.getToDoLists().indexOf(list)).getListOfToDo()
 								.add(new ToDo(nameOfToDo, timeOfToDo, false));
 					}
 				}
