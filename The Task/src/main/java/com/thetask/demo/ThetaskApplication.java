@@ -1,5 +1,7 @@
 package com.thetask.demo;
 
+import java.util.ArrayList;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -18,6 +20,8 @@ public class ThetaskApplication {
 
 		addNewListForUser("Kalle", "Hushållssyssllur");
 		addNewListForUser("Kalle", "Ärenden");
+
+
 
 		addNewListForUser("Balle", "Shoppa");
 		addNewListForUser("Balle", "Träna");
@@ -64,12 +68,44 @@ public class ThetaskApplication {
 
 		System.out.println(userlist.getUserList().get(0).getToDoLists().get(1).getListOfToDos().get(0).getName());
 
+
+		removeListForUser("Kalle", "Ärenden"); //Tar bort listan efter den skapades
+
+		//Skriver ut alla listor kalle har
+		for (User user : userlist.getUserList()) { 
+			if (user.getUsername().equals("Kalle")) {
+				System.out.println("Namn på Kalles listor: ");
+				for (ListOfToDos toDoList : user.getToDoLists()) {
+					System.out.println(toDoList.getNameOfList() + " ");
+				}
+			}
+		}
+
 	}
 
 	public static void addNewListForUser(String username, String nameOfList) {
 		for (User user : userlist.getUserList()) {
 			if (user.getUsername().equals(username)) {
 				user.getToDoLists().add((new ListOfToDos(null, nameOfList)));
+			}
+		}
+	}
+
+	public static void removeListForUser(String username, String nameOfList) {
+		for (User user : userlist.getUserList()) {
+			if (user.getUsername().equals(username)) {
+				ArrayList<ListOfToDos> toDoLists = user.getToDoLists();
+				ListOfToDos listToRemove = null;
+
+				for (ListOfToDos findListToRemove : toDoLists) {
+					if (findListToRemove.getNameOfList().equals(nameOfList)) {
+						listToRemove = findListToRemove;
+					}
+				}
+
+				if (listToRemove != null) {
+					toDoLists.remove(listToRemove);
+				}
 			}
 		}
 	}
