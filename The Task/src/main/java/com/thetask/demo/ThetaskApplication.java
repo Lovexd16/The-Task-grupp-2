@@ -69,7 +69,8 @@ public class ThetaskApplication {
 		System.out.println(userlist.getUserList().get(0).getToDoLists().get(1).getListOfToDos().get(0).getName());
 
 
-		removeListForUser("Kalle", "Ärenden"); //Tar bort listan efter den skapades
+		System.out.println("---Test för ta bort lista metoden---");
+		removeListForUser("Kalle", "Ärenden"); //Tar bort listan efter den skapades. Kommentera in eller ut för att testa
 
 		//Skriver ut alla listor kalle har
 		for (User user : userlist.getUserList()) { 
@@ -81,6 +82,39 @@ public class ThetaskApplication {
 			}
 		}
 
+		System.out.println("---Test för rensa lista metoden---");
+		userlist.getUserList().add(new User("TestLove", "TestLove"));
+		addNewListForUser("TestLove", "TestListaLove");
+		addNewToDoForUser("TestLove", "TestListaLove", "Viktigt", 100);
+		addNewToDoForUser("TestLove", "TestListaLove", "Viktigare", 50);
+
+		System.out.println("Listan innan rensning: ");
+		for (User user : userlist.getUserList()) {
+			if (user.getUsername().equals("TestLove")) {
+				for (ListOfToDos list : user.getToDoLists()) {
+					if (list.getNameOfList().equals("TestListaLove")) {
+						for (ToDo todo : list.getListOfToDos()) {
+							System.out.println(todo.getName());
+						}
+					}
+				}
+			}
+		}
+
+		clearListForUser("TestLove", "TestListaLove");
+
+		System.out.println("Listan efter rensning: ");
+			for (User user : userlist.getUserList()) {
+			if (user.getUsername().equals("TestLove")) {
+				for (ListOfToDos list : user.getToDoLists()) {
+					if (list.getNameOfList().equals("TestListaLove")) {
+						for (ToDo todo : list.getListOfToDos()) {
+							System.out.println(todo.getName());
+						}
+					}
+				}
+			}
+		}
 	}
 
 	public static void addNewListForUser(String username, String nameOfList) {
@@ -105,6 +139,18 @@ public class ThetaskApplication {
 
 				if (listToRemove != null) {
 					toDoLists.remove(listToRemove);
+				}
+			}
+		}
+	}
+
+	public static void clearListForUser(String username, String nameOfList) {
+		for (User user : userlist.getUserList()) {
+			if (user.getUsername().equals(username)) {
+				for (ListOfToDos listToClear : user.getToDoLists()) {
+					if (listToClear.getNameOfList().equals(nameOfList)) {
+						listToClear.getListOfToDos().clear();
+					}
 				}
 			}
 		}
