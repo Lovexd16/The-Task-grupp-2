@@ -12,7 +12,7 @@ public class ListOfToDos {
         this.nameOfList = nameOfList;
     }
 
-    public static void removeToDo(String username, String nameOfList, String nameOfToDo, long timeOfToDo) {
+    public static void removeToDo(String username, String nameOfList, String nameOfToDo) {
         for (User user : ThetaskApplication.userlist.getUserList()) {
             if (user.getUsername().equals(username)) {
                 for (ListOfToDos list : user.getToDoLists()) {
@@ -21,6 +21,7 @@ public class ListOfToDos {
                             if (todo.getName().equals(nameOfToDo)) {
                                 list.getListOfToDos().remove(todo);
                             }
+                            //kanske utöka metod till att kolla mot tiden oxå, kan man ha 2 same-name todos då kanske?
                         }
                     }
                 }
@@ -28,41 +29,52 @@ public class ListOfToDos {
         }
     }
 
-    public long editToDoTime(String username, String nameOfList, String nameOfToDo, long timeOfToDo) {
+    public static void editToDoTime(String username, String nameOfList, String nameOfToDo, long newTimeOfToDo) {
         for (User user : ThetaskApplication.userlist.getUserList()) {
             if (user.getUsername().equals(username)) {
                 for (ListOfToDos list : user.getToDoLists()) {
                     if (list.getNameOfList().equals(nameOfList)) {
                         for (ToDo todo : list.getListOfToDos()) {
                             if (todo.getName().equals(nameOfToDo)) {
-                                list.getListOfToDos().get(list.getListOfToDos().indexOf(todo)).setTime(timeOfToDo);
-                                return timeOfToDo;
+                                list.getListOfToDos().get(list.getListOfToDos().indexOf(todo)).setTime(newTimeOfToDo);
                             }
                         }
                     }
                 }
             }
         }
-        return timeOfToDo;
     }
 
-    public String editToDoName(String username, String nameOfList, String nameOfToDo, long timeOfToDo) {
+    public static void editToDoName(String username, String nameOfList, String nameOfToDo, String newNameOfToDo) {
         for (User user : ThetaskApplication.userlist.getUserList()) {
             if (user.getUsername().equals(username)) {
                 for (ListOfToDos list : user.getToDoLists()) {
                     if (list.getNameOfList().equals(nameOfList)) {
                         for (ToDo todo : list.getListOfToDos()) {
                             if (todo.getName().equals(nameOfToDo)) {
-                                list.getListOfToDos().get(list.getListOfToDos().indexOf(todo)).setName(nameOfToDo);
-                                return nameOfToDo;
-
+                                list.getListOfToDos().get(list.getListOfToDos().indexOf(todo)).setName(newNameOfToDo);
                             }
                         }
                     }
                 }
             }
         }
-        return nameOfToDo;
+    }
+
+    public static void setToDoAsDone(String username, String nameOfList, String nameOfToDo) {
+        for (User user : ThetaskApplication.userlist.getUserList()) {
+            if (user.getUsername().equals(username)) {
+                for (ListOfToDos list : user.getToDoLists()) {
+                    if (list.getNameOfList().equals(nameOfList)) {
+                        for (ToDo todo : list.getListOfToDos()) {
+                            if (todo.getName().equals(nameOfToDo)) {
+                                list.getListOfToDos().get(list.getListOfToDos().indexOf(todo)).setIsDone(true);;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public ArrayList<ToDo> getListOfToDos() {
