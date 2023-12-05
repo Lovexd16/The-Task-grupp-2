@@ -6,16 +6,31 @@ title.textContent = localStorage.getItem("loggedInAs");
 
 function addTask() {
     var taskInput = document.getElementById('taskInput');
+    var dateInput = document.getElementById('dateInput');
     var timeInput = document.getElementById('timeInput');
+    
     var taskText = taskInput.value;
+    var dateText = dateInput.value;
     var timeText = timeInput.value;
     var todoArea = document.querySelector('.toDoArea');
+
+    if (!isValidDate(dateText) || !isValidTime(timeText)) {
+        alert('Please enter a valid date (MM/DD) and time (HH:MM).');
+        taskInput.value = '';
+        dateInput.value = '';
+        timeInput.value = '';
+        return;
+        //liten ändring ta bort detta
+    }
 
     var output = document.createElement('div');
     output.className = 'output';
 
     var taskElement = document.createElement('span');
     taskElement.textContent = taskText;
+
+    var dateElement = document.createElement('span');
+    dateElement.textContent = dateText;
 
     var timeElement = document.createElement('span');
     timeElement.textContent = timeText;
@@ -27,6 +42,7 @@ function addTask() {
     };
 
     output.appendChild(taskElement);
+    output.appendChild(dateElement);
     output.appendChild(timeElement);
     output.appendChild(doneBtn);
 
@@ -36,6 +52,7 @@ function addTask() {
     todoArea.appendChild(output);
 
     taskInput.value = '';
+    dateInput.value = '';
     timeInput.value = '';
 }
 function moveTaskToDone(output) {
@@ -91,4 +108,22 @@ function removeListBtn(newList) {
 function logout() {
     localStorage.removeItem('loggedInAs');
     window.location.href = "/";
+}
+function isValidDate(dateText) {
+    var dateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])$/;
+    var parts = dateText.split('/');
+    var day = parseInt(parts[0], 10);
+    var month = parseInt(parts[1], 10);
+
+    if (dateRegex.test(dateText) && day >= 1 && day <= 31 && month >= 1 && month <= 12) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+function isValidTime(timeText) {
+    var timeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/;
+    return timeRegex.test(timeText);
 }
