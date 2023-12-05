@@ -51,7 +51,7 @@ public class ThetaskApplication {
 			}
 		}
 
-		ListOfToDos.removeToDo("Balle", "Träna", "Axlar", 1);
+		ListOfToDos.removeToDo("Balle", "Träna", "Axlar");
 
 		System.out.println("Balles innehåll i listan efter borttagning av axlar i listan träna");
 		for (User user : ThetaskApplication.userlist.getUserList()) {
