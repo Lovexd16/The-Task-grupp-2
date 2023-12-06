@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class TheTaskController {
@@ -23,7 +24,7 @@ public class TheTaskController {
     }
 
     @GetMapping("/")
-    String getStart() {
+    String getStart(Model model) {
         return "loginPage";
     }
 
@@ -61,11 +62,10 @@ public class TheTaskController {
 
     @PostMapping("/newUser")
     String postNewUser(@RequestParam("username2") String username, @RequestParam("password2") String password,
-            Model model) {
+            Model model, RedirectAttributes ra) {
         for (User user : ThetaskApplication.userlist.getUserList()) {
             if (user.getUsername().equals(username)) {
-                model.addAttribute("errorMessage", "Finns redan sådan användare");
-                System.out.println("Finns redan sån user");
+                ra.addFlashAttribute("errorMessageForCreatingUser", "Användarnamn upptaget");
                 return "redirect:/";
             }
         }
@@ -75,7 +75,6 @@ public class TheTaskController {
         for (User user : ThetaskApplication.userlist.getUserList()) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 model.addAttribute("listOfLists", user.getToDoLists());
-                System.out.println("Lade till ny användare");
                 return "redirect:/home";
             }
         }
@@ -84,16 +83,14 @@ public class TheTaskController {
 
     @PostMapping("/loginUser")
     String postLogin(@RequestParam("username1") String username, @RequestParam("password1") String password,
-            Model model) {
+            Model model, RedirectAttributes ra) {
         for (User user : ThetaskApplication.userlist.getUserList()) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 model.addAttribute("listOfLists", user.getToDoLists());
-                System.out.println("loggar in");
                 return "redirect:/home";
             }
         }
-        System.out.println("hittar inte användare");
-        model.addAttribute("errorMessage", "Fel användarnamn eller lösenord");
+        ra.addFlashAttribute("errorMessageForLogin", "Fel användarnamn eller lösenord");
         return "redirect:/";
     }
 

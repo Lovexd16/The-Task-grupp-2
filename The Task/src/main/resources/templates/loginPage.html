@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"></html>>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <link rel="stylesheet" href="loginStyle.css">
-    <script src="scriptForLoginPage.js" defer></script>
+    <script type="text/javascript" th:src="@{/scriptForLoginPage.js}" defer></script>
 </head>
 <body>
     <form method="post" th:action="@{/loginUser}">
@@ -14,15 +14,17 @@
             <u>Användarnamn</u><br/><br/>
             <input id="User1" type="användarnamn" name = "username1" required><br/><br/>
             <u>Lösenord</u><br/><br/>
+            <p class="errorMessage" th:text="${errorMessageForLogin}"></p>
             <input id="password1" type="password" name = "password1" required><br/><br/>
             <button id="loginBtn" type="submit">Logga in</button>
          </div>
     </form>
-
+        
    <form method="post" th:action="@{/newUser}">
         <div class="box2">
             <u>Ej registrerad</u><br/><br/>
             <u>Användarnamn</u><br/><br/>
+            <p class="errorMessage" th:text="${errorMessageForCreatingUser}"></p>
             <input id="User2" type="användarnamn" name="username2" required><br/><br/>
             <u>Lösenord</u><br/><br/>
             <input id="password2" type="password" name = "password2" required><br/><br/>
