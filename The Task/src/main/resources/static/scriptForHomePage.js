@@ -5,14 +5,14 @@ let title = document.getElementById("title");
 title.textContent = localStorage.getItem("loggedInAs");
 
 function addTask() {
-    var taskInput = document.getElementById('taskInput');
-    var dateInput = document.getElementById('dateInput');
-    var timeInput = document.getElementById('timeInput');
+    let taskInput = document.getElementById('taskInput');
+    let dateInput = document.getElementById('dateInput');
+    let timeInput = document.getElementById('timeInput');
     
-    var taskText = taskInput.value;
-    var dateText = dateInput.value;
-    var timeText = timeInput.value;
-    var todoArea = document.querySelector('.toDoArea');
+    let taskText = taskInput.value;
+    let dateText = dateInput.value;
+    let timeText = timeInput.value;
+    let todoArea = document.querySelector('.toDoArea');
 
     if (!isValidDate(dateText) || !isValidTime(timeText)) {
         alert('Please enter a valid date (MM/DD) and time (HH:MM).');
@@ -20,22 +20,23 @@ function addTask() {
         dateInput.value = '';
         timeInput.value = '';
         return;
-        //liten ändring ta bort detta
     }
-
-    var output = document.createElement('div');
+ 
+    let output = document.createElement('div');
     output.className = 'output';
 
-    var taskElement = document.createElement('span');
+    let taskElement = document.createElement('span');
     taskElement.textContent = taskText;
 
-    var dateElement = document.createElement('span');
+    let dateElement = document.createElement('span');
     dateElement.textContent = dateText;
+    dateElement.className = 'date';
 
-    var timeElement = document.createElement('span');
+    let timeElement = document.createElement('span');
     timeElement.textContent = timeText;
+    timeElement.className = 'time';
 
-    var doneBtn = document.createElement('button');
+    let doneBtn = document.createElement('button');
     doneBtn.textContent = 'Done';
     doneBtn.onclick = function() {
         moveTaskToDone(output);
@@ -54,13 +55,14 @@ function addTask() {
     taskInput.value = '';
     dateInput.value = '';
     timeInput.value = '';
+
 }
 function moveTaskToDone(output) {
-    var todoArea = document.querySelector('.toDoArea');
-    var doneArea = document.querySelector('.doneArea');
+    let todoArea = document.querySelector('.toDoArea');
+    let doneArea = document.querySelector('.doneArea');
 
     output.removeChild(output.lastChild);
-    var deleteBtn = document.createElement('button');
+    let deleteBtn = document.createElement('button');
     deleteBtn.textContent = 'Delete';
     deleteBtn.onclick = function() {
         deleteTask(output);
@@ -75,33 +77,29 @@ function deleteTask(output) {
 }
 
 function newListBtn() {
-    var scrollBox = document.querySelector('.scrollBox');
-    var newListName = prompt('Name of your new list:');
+    let scrollBox = document.querySelector('.scrollBox');
+    let newListName = prompt('Name of your new list:');
  
     if (newListName) {
-        var newList = document.createElement('div');
+        let newList = document.createElement('div');
         newList.className = 'listContainer';
         newList.textContent = '-' + newListName + '-';
 
         newList.onclick = function() {
             listClick();
         }
-        var removeBtn = document.createElement('button');
+        let removeBtn = document.createElement('button');
         removeBtn.textContent = 'X';
         removeBtn.onclick = function() {
             removeListBtn(newList);
         };
         newList.appendChild(removeBtn);
         scrollBox.appendChild(newList);
-     
     }
-}
-function listClick() {
-   //Funktion för att hantera listorna
 }
 
 function removeListBtn(newList) {
-    var scrollBox = document.querySelector('.scrollBox');
+    let scrollBox = document.querySelector('.scrollBox');
     scrollBox.removeChild(newList);
 }
 
@@ -110,10 +108,10 @@ function logout() {
     window.location.href = "/";
 }
 function isValidDate(dateText) {
-    var dateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])$/;
-    var parts = dateText.split('/');
-    var day = parseInt(parts[0], 10);
-    var month = parseInt(parts[1], 10);
+    const dateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])$/;
+    const parts = dateText.split('/');
+    const day = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10);
 
     if (dateRegex.test(dateText) && day >= 1 && day <= 31 && month >= 1 && month <= 12) {
         return true;
@@ -122,8 +120,42 @@ function isValidDate(dateText) {
     }
 }
 
-
 function isValidTime(timeText) {
-    var timeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/;
+    const timeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/;
     return timeRegex.test(timeText);
+}
+
+setInterval(checkTasksDueTime, 60000);
+
+function checkTasksDueTime() {
+    let currentTime = new Date();
+    let taskElements = document.querySelectorAll('.output');
+
+    taskElements.forEach(function (taskElement) {
+        let timeElement = taskElement.querySelector('span.time');
+        let dateElement = taskElement.querySelector('span.date');
+       
+        if (timeElement && dateElement) {
+            let timeText = timeElement.textContent;
+            let dateText = dateElement.textContent;
+            if (isTaskDue(currentTime, dateText, timeText)) {
+                handleTaskDue(taskElement);
+            }
+        }
+    });
+}
+
+function isTaskDue(currentTime, dateText, timeText) {
+    let [day, month] = dateText.split('/');
+    let [hour, min] = timeText.split(':');
+    
+    let taskDueTime = new Date(currentTime.getFullYear(), month - 1, day, parseInt(hour, 10), parseInt(min, 10));
+
+    return currentTime.getMonth() === taskDueTime.getMonth() && 
+           currentTime.getDate() === taskDueTime.getDate() &&
+           taskDueTime <= currentTime;
+}
+
+function handleTaskDue(taskElement) {
+    taskElement.style.backgroundColor = 'red';
 }

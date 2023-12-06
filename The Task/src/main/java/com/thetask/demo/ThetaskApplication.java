@@ -12,11 +12,11 @@ public class ThetaskApplication {
 		SpringApplication.run(ThetaskApplication.class, args);
 
 		
+		CurrentTime.getCurrentTime();
 
 		userlist.getUserList().add(new User("Kalle", "123"));
 		userlist.getUserList().add(new User("Balle", "222"));
-
-
+		
 		System.out.println(userlist.getUserList().get(0).getUsername());
 		
 		addNewListForUser("Kalle", "Hushållssyssllur");
