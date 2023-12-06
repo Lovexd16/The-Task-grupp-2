@@ -76,7 +76,7 @@ public class TheTaskController {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 model.addAttribute("listOfLists", user.getToDoLists());
                 System.out.println("Lade till ny användare");
-                return "/home";
+                return "redirect:/home";
             }
         }
         return "homePage";
@@ -89,7 +89,7 @@ public class TheTaskController {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 model.addAttribute("listOfLists", user.getToDoLists());
                 System.out.println("loggar in");
-                return "/home";
+                return "redirect:/home";
             }
         }
         System.out.println("hittar inte användare");
