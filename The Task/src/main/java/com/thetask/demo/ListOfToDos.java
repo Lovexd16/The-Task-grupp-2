@@ -24,7 +24,8 @@ public class ListOfToDos {
                             if (todo.getName().equals(nameOfToDo)) {
                                 list.getListOfToDo().remove(todo);
                             }
-                            //kanske utöka metod till att kolla mot tiden oxå, kan man ha 2 same-name todos då kanske?
+                            // kanske utöka metod till att kolla mot tiden oxå, kan man ha 2 same-name todos
+                            // då kanske?
                         }
                     }
                 }
@@ -40,8 +41,7 @@ public class ListOfToDos {
                         for (ToDo todo : list.getListOfToDo()) {
                             if (todo.getName().equals(nameOfToDo)) {
 
-                                list.getListOfToDo().get(list.getListOfToDo().indexOf(todo)).setTime(timeOfToDo);
-                                
+                                list.getListOfToDo().get(list.getListOfToDo().indexOf(todo)).setTime(newTimeOfToDo);
 
                             }
                         }
@@ -60,9 +60,7 @@ public class ListOfToDos {
                             if (todo.getName().equals(nameOfToDo)) {
 
                                 list.getListOfToDo().get(list.getListOfToDo().indexOf(todo)).setName(nameOfToDo);
-                               
 
-                                
                             }
                         }
                     }
@@ -71,15 +69,15 @@ public class ListOfToDos {
         }
     }
 
-
     public static void setToDoAsDone(String username, String nameOfList, String nameOfToDo) {
         for (User user : ThetaskApplication.userlist.getUserList()) {
             if (user.getUsername().equals(username)) {
                 for (ListOfToDos list : user.getToDoLists()) {
                     if (list.getNameOfList().equals(nameOfList)) {
-                        for (ToDo todo : list.getListOfToDos()) {
+                        for (ToDo todo : list.getListOfToDo()) {
                             if (todo.getName().equals(nameOfToDo)) {
-                                list.getListOfToDos().get(list.getListOfToDos().indexOf(todo)).setIsDone(true);;
+                                list.getListOfToDo().get(list.getListOfToDo().indexOf(todo)).setIsDone(true);
+                                ;
                             }
                         }
                     }
