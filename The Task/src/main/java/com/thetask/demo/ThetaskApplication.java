@@ -69,15 +69,12 @@ public class ThetaskApplication {
 
 		removeListForUser("Kalle", "Ärenden"); // Tar bort listan efter den skapades
 
-
-		
-		
-
 		System.out.println("---Test för ta bort lista metoden---");
-		removeListForUser("Kalle", "Ärenden"); //Tar bort listan efter den skapades. Kommentera in eller ut för att testa
+		removeListForUser("Kalle", "Ärenden"); // Tar bort listan efter den skapades. Kommentera in eller ut för att
+												// testa
 
-		//Skriver ut alla listor kalle har
-		for (User user : userlist.getUserList()) { 
+		// Skriver ut alla listor kalle har
+		for (User user : userlist.getUserList()) {
 
 			if (user.getUsername().equals("Kalle")) {
 				System.out.println("Namn på Kalles listor: ");
@@ -98,7 +95,7 @@ public class ThetaskApplication {
 			if (user.getUsername().equals("TestLove")) {
 				for (ListOfToDos list : user.getToDoLists()) {
 					if (list.getNameOfList().equals("TestListaLove")) {
-						for (ToDo todo : list.getListOfToDos()) {
+						for (ToDo todo : list.getListOfToDo()) {
 							System.out.println(todo.getName());
 						}
 					}
@@ -109,11 +106,11 @@ public class ThetaskApplication {
 		clearListForUser("TestLove", "TestListaLove");
 
 		System.out.println("Listan efter rensning: ");
-			for (User user : userlist.getUserList()) {
+		for (User user : userlist.getUserList()) {
 			if (user.getUsername().equals("TestLove")) {
 				for (ListOfToDos list : user.getToDoLists()) {
 					if (list.getNameOfList().equals("TestListaLove")) {
-						for (ToDo todo : list.getListOfToDos()) {
+						for (ToDo todo : list.getListOfToDo()) {
 							System.out.println(todo.getName());
 						}
 					}
@@ -154,7 +151,7 @@ public class ThetaskApplication {
 			if (user.getUsername().equals(username)) {
 				for (ListOfToDos listToClear : user.getToDoLists()) {
 					if (listToClear.getNameOfList().equals(nameOfList)) {
-						listToClear.getListOfToDos().clear();
+						listToClear.getListOfToDo().clear();
 					}
 				}
 			}
