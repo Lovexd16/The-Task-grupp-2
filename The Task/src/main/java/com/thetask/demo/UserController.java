@@ -21,16 +21,18 @@ public class UserController {
 
     @PostMapping("/users")
     public String addUser(@RequestParam String username, @RequestParam String password,
-            Model model) {
+            Model model, RedirectAttributes redirectAttributes) {
         if (isUsernameTaken(username)) {
-            // Användarnamnet är redan taget
-            return "usernameTaken";
+            redirectAttributes.addFlashAttribute("errorMessageForCreatingUser", "Användarnamn upptaget");
+            return "redirect:/";
+
         }
 
         User user = new User(username, password);
         users.add(user);
+        redirectAttributes.addFlashAttribute("successMessage", "Användare skapad!");
         model.addAttribute("users", users);
-        return "loginPage";
+        return "redirect:/";
     }
 
     @PostMapping("/users/login")
@@ -44,10 +46,13 @@ public class UserController {
             redirectAttributes.addFlashAttribute("loggedInUser", user);
             loggedInUser = user;
             System.out.println("Inloggad som: " + user.getUsername());
-            return "redirect:/home";
-        }
 
-        return "homePage";
+        } else {
+            redirectAttributes.addFlashAttribute("errorMessageForLogin", "Fel användarnamn eller lösenord");
+            return "redirect:/";
+        }
+        return "redirect:/home";
+
     }
 
     private boolean isUsernameTaken(String username) {

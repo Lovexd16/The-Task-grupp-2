@@ -23,7 +23,18 @@
 
             <label>Deadline:</label>
             <input type="date" name="deadline" required><br>
-            
+            <div class="members">
+                <ul>
+                    <li class="List" th:id="${todoList.id}" th:each="todoList : ${todoLists}"><br/>
+                        <a th:href="@{/member/{memberfname}(memberfname=${member.fName})}"><br/>
+                             <span th:text="${member.fName} + ' ' + ${member.lName}"></span>
+                             <div>
+                                <a th:href = "@{/remove-member/{memberId}(memberId=${member.id})}">
+                                    <button id="removeBtn" onclick="removeAlert()">Ta bort</button>
+                             </div>       
+                    </li>
+                </ul>
+            </div>
             <label>List:</label>
             <select name="listId" required>
                 <option value="" disabled selected>Select a list</option>

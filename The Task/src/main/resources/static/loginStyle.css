@@ -38,3 +38,8 @@ body{
     font-size: 13px;
     color:brown
 }
+
+.successMessage {
+    font-size: 13px;
+    color:green;
+}
