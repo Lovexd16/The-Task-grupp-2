@@ -10,7 +10,7 @@ import java.util.List;
 @Controller
 public class ListOfToDosController {
 
-    private final List<ListOfToDos> listoftodos;
+    final List<ListOfToDos> listoftodos;
     private final UserController userController;
 
     public ListOfToDosController(List<ListOfToDos> listoftodos, UserController userController) {

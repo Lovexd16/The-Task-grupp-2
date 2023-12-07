@@ -105,10 +105,10 @@ function removeListBtn(newList) {
     scrollBox.removeChild(newList);
 }
 
-function logout() {
-    localStorage.removeItem('loggedInAs');
-    window.location.href = "/";
-}
+// function logout() {
+//     localStorage.removeItem('loggedInUser');
+//     window.location.href = "/";
+// }
 function isValidDate(dateText) {
     var dateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])$/;
     var parts = dateText.split('/');

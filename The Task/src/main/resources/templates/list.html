@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="scrollBox">
+        <form method="post" action="/addtodo">
+            <label>Att göra:</label>
+            <input type="text" name="name" required><br>
+
+            <label>Deadline:</label>
+            <input type="datetime-local" name="deadline" required><br>
+            <button type="submit">Lägg till</button>
+            </form>
+    </div>
+    <a href="/home"><u>Tillbaka till alla listor</u></a>
+
+   <div class="todos">
+        <ul>
+            <li class="todos"  th:each="todo : ${todos}"><br/>
+                <!-- <a th:href="@{/list/{todolistname}(todolistname=${todoList.name})}"><br/> -->
+                     <span th:text="${todo.name} + ' ' + ${todo.deadline}"></span>
+                   
+            </li>
+        </ul>
+    </div> 
+    
+</body>
+</html>

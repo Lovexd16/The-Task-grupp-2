@@ -3,14 +3,19 @@ package com.thetask.demo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class ToDoController {
+    private final List<ListOfToDos> listoftodos = new ArrayList<>();
+    private final UserController usercontroller = new UserController();
 
     private final List<ToDo> todos;
     private final ListOfToDosController listoftodosController;
@@ -20,25 +25,24 @@ public class ToDoController {
         this.listoftodosController = listoftodosController;
     }
 
-    @GetMapping("/tasks")
-    public String getTasks(Model model) {
-        List<ListOfToDos> listoftodos = listoftodosController.getTodoLists();
-        model.addAttribute("todos", todos);
-        model.addAttribute("listoftodos", listoftodos);
-        return "homePage";
-    }
+    // @GetMapping("/tasks")
+    // public String getTasks(Model model) {
+    // List<ListOfToDos> listoftodos = listoftodosController.getTodoLists();
+    // model.addAttribute("todos", todos);
+    // model.addAttribute("listoftodos", listoftodos);
+    // return "list";
+    // }
 
-    @PostMapping("/tasks")
-    public String addTask(@RequestParam String name, @RequestParam LocalDate deadline,
-            @RequestParam Long selectedTodoList, Model model) {
-        ListOfToDos listoftodos = findTodoListById(selectedTodoList);
-        if (listoftodos != null) {
-            ToDo todo = new ToDo(name, deadline, listoftodos);
-            todos.add(todo);
+    @PostMapping("/addtodo")
+    public String addTask(@RequestParam String name, @RequestParam LocalDateTime deadline,
+            Model model) {
 
-        }
+        ToDo todo = new ToDo(name, deadline);
+        todos.add(todo);
+        System.out.println("ny" + todo.getName());
+
         model.addAttribute("todos", todos);
-        return "redirect:/home";
+        return "list";
     }
 
     private ListOfToDos findTodoListById(Long listoftodosId) {
@@ -50,4 +54,30 @@ public class ToDoController {
         }
         return null;
     }
+
+    @GetMapping("/list/{todolistname}")
+    String getList(@PathVariable String todolistname, Model model) {
+
+        List<ListOfToDos> listoftodos = listoftodosController.getTodoLists();
+        model.addAttribute("todos", todos);
+        model.addAttribute("listoftodos", listoftodos);
+
+        for (ListOfToDos list : listoftodos) {
+            if (list.getName().equals(todolistname)) {
+                model.addAttribute("list", new ListOfToDos(list.getName(), list.getUser()));
+                return "list";
+            }
+        }
+        return "list";
+    }
+
+    // private List<ListOfToDos> getUserTodoLists(User user) {
+    // List<ListOfToDos> userLists = new ArrayList<>();
+    // for (ListOfToDos list : listoftodos) {
+    // if (list.getUser().equals(user)) {
+    // userLists.add(list);
+    // }
+    // }
+    // return userLists;
+    // }
 }
