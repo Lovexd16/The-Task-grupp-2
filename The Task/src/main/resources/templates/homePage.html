@@ -14,62 +14,41 @@
 </head>
 
 <body>
-    <h1>Userlists</h1>
-
-    <div class="scrollBox">
-        <form method="post" action="/tasks">
-            <label>Description:</label>
-            <input type="text" name="name" required><br>
-
-            <label>Deadline:</label>
-            <input type="date" name="deadline" required><br>
-            <div class="members">
-                <ul>
-                    <li class="List" th:id="${todoList.id}" th:each="todoList : ${todoLists}"><br/>
-                        <a th:href="@{/member/{memberfname}(memberfname=${member.fName})}"><br/>
-                             <span th:text="${member.fName} + ' ' + ${member.lName}"></span>
-                             <div>
-                                <a th:href = "@{/remove-member/{memberId}(memberId=${member.id})}">
-                                    <button id="removeBtn" onclick="removeAlert()">Ta bort</button>
-                             </div>       
-                    </li>
-                </ul>
-            </div>
-            <label>List:</label>
+    <h1>Dina listor:</h1>
+          
+            <!-- <label>List:</label>
             <select name="listId" required>
                 <option value="" disabled selected>Select a list</option>
                 <option th:each="todoList : ${todoLists}" th:value="${todoList.id}" th:text="${todoList.name}"></option>
-            </select><br>
+            </select><br> -->
 
-            <input type="text" id="timeInput" placeholder="Time (HH:MM)">
-            <button type="submit">Lägg till</button>
-        </form>
-    </div>
+            <!-- <input type="text" id="timeInput" placeholder="Time (HH:MM)">
+            <button type="submit">Lägg till</button> -->
+       
 
     <div class="scrollBox">
         <form method="post" action="/todolists">
             <label>Name:</label>
             <input type="text" name="name" required><br>
             <button type="submit">Lägg till lista</button>
+            <div class="lists">
+                <ul>
+                    <li class="List" th:id="${todoList.id}" th:each="todoList : ${todoLists}"><br/>
+                        <a th:href="@{/list/{todolistname}(todolistname=${todoList.name})}"><br/>
+                             <span th:text="${todoList.name}"></span></a>
+                             <!-- <div>
+                                <a th:href = "@{/remove-member/{memberId}(memberId=${member.id})}">
+                                    <button id="removeBtn" onclick="removeAlert()">Ta bort</button>
+                             </div>        -->
+                    </li>
+                </ul>
+            </div>
         </form>
     </div>
-
-    <div class="areaContainer">
-        <div id="toDoArea" class="toDoArea">
-            <div class="areaHeader">Todo</div>
-        </div>
-        <div id="doneArea" class="doneArea">
-            <div class="areaHeader">Done</div>
-        </div>
-        <div class="scrollBox">
-            <div class="listHeader">Lists</div>
-            <button id="newListBtn" onclick="newListBtn()">New List</button>
-        </div>
-    </div>
-
     <div id="logoutBtn">
         <button onclick="logout()">Log out</button>
     </div>
+    
 
 </body>
 

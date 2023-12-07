@@ -1,17 +1,18 @@
 package com.thetask.demo;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class ToDo {
     private static Long taskIdCounter = 1L;
 
     private Long id;
     private String name;
-    private LocalDate deadline;
+    private LocalDateTime deadline;
     private boolean isDone;
     private ListOfToDos listoftodos;
 
-    public ToDo(String name, LocalDate deadline, ListOfToDos listoftodos) {
+    public ToDo(String name, LocalDateTime deadline) {
         this.id = taskIdCounter++;
         this.name = name;
         this.deadline = deadline;
@@ -27,14 +28,6 @@ public class ToDo {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public LocalDate getDeadline() {
-        return deadline;
-    }
-
-    public void setDeadline(LocalDate deadline) {
-        this.deadline = deadline;
     }
 
     public String getName() {
@@ -67,6 +60,14 @@ public class ToDo {
 
     public void setListoftodos(ListOfToDos listoftodos) {
         this.listoftodos = listoftodos;
+    }
+
+    public LocalDateTime getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(LocalDateTime deadline) {
+        this.deadline = deadline;
     }
 
 }
