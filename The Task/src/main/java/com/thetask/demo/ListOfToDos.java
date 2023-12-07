@@ -1,19 +1,22 @@
 package com.thetask.demo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ListOfToDos {
     private static Long todoListIdCounter = 1L;
 
     private Long id;
     private String name;
     private User user;
+    private List<ToDo> tasks;
 
     public ListOfToDos(String name, User user) {
-
+        this.id = todoListIdCounter++;
         this.name = name;
         this.user = user;
+        this.tasks = new ArrayList<>();
     }
-
-    // Getter och setter-metoder
 
     public Long getId() {
         return id;
@@ -38,7 +41,20 @@ public class ListOfToDos {
     public void setUser(User user) {
         this.user = user;
     }
-}
+
+    public List<ToDo> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<ToDo> tasks) {
+        this.tasks = tasks;
+    }
+
+    public void addTask(ToDo task) {
+        tasks.add(task);
+    }
+    }
+
 // public static void removeToDo(String username, String nameOfList, String
 
 // nameOfToDo) {
