@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"></html>>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,6 +24,7 @@
         <div class="box2">
             <u>Ej registrerad</u><br/><br/>
             <u>Användarnamn</u><br/><br/>
+            <p class="successMessage" th:text="${successMessage}"></p>
             <p class="errorMessage" th:text="${errorMessageForCreatingUser}"></p>
             <input id="User2" type="användarnamn" name="username2" required><br/><br/>
             <u>Lösenord</u><br/><br/>

@@ -1,22 +1,19 @@
 package com.thetask.demo;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 public class ListOfToDos {
 
-    private ArrayList<ToDo> ListOfToDo;
+    private ArrayList<ToDo> ListOfToDos;
     private String nameOfList;
-    private UUID id;
 
-    ListOfToDos(ArrayList<ToDo> ListOfToDo, String nameOfList, UUID id) {
-        this.ListOfToDo = new ArrayList<>();
+    ListOfToDos(ArrayList<ToDo> ListOfToDos, String nameOfList) {
+        this.ListOfToDos = new ArrayList<>();
         this.nameOfList = nameOfList;
-        this.id = id;
     }
 
     public static void removeToDo(String username, String nameOfList, String nameOfToDo) {
-        for (User user : ThetaskApplication.userlist.getUserList()) {
+        for (User user : UserList.getUserList()) {
             if (user.getUsername().equals(username)) {
                 for (ListOfToDos list : user.getToDoLists()) {
                     if (list.getNameOfList().equals(nameOfList)) {
@@ -33,44 +30,44 @@ public class ListOfToDos {
         }
     }
 
-    public static void editToDoTime(String username, String nameOfList, String nameOfToDo, long newTimeOfToDo) {
-        for (User user : ThetaskApplication.userlist.getUserList()) {
-            if (user.getUsername().equals(username)) {
-                for (ListOfToDos list : user.getToDoLists()) {
-                    if (list.getNameOfList().equals(nameOfList)) {
-                        for (ToDo todo : list.getListOfToDo()) {
-                            if (todo.getName().equals(nameOfToDo)) {
+    // public static void editToDoTime(String username, String nameOfList, String nameOfToDo, long newTimeOfToDo) {
+    //     for (User user : UserList.getUserList()) {
+    //         if (user.getUsername().equals(username)) {
+    //             for (ListOfToDos list : user.getToDoLists()) {
+    //                 if (list.getNameOfList().equals(nameOfList)) {
+    //                     for (ToDo todo : list.getListOfToDo()) {
+    //                         if (todo.getName().equals(nameOfToDo)) {
 
-                                list.getListOfToDo().get(list.getListOfToDo().indexOf(todo)).setTime(newTimeOfToDo);
+    //                             list.getListOfToDo().get(list.getListOfToDo().indexOf(todo)).setTime(newTimeOfToDo);
 
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
-    public static void editToDoName(String username, String nameOfList, String nameOfToDo, String newNameOfToDo) {
-        for (User user : ThetaskApplication.userlist.getUserList()) {
-            if (user.getUsername().equals(username)) {
-                for (ListOfToDos list : user.getToDoLists()) {
-                    if (list.getNameOfList().equals(nameOfList)) {
-                        for (ToDo todo : list.getListOfToDo()) {
-                            if (todo.getName().equals(nameOfToDo)) {
+    // public static void editToDoName(String username, String nameOfList, String nameOfToDo, String newNameOfToDo) {
+    //     for (User user : UserList.getUserList()) {
+    //         if (user.getUsername().equals(username)) {
+    //             for (ListOfToDos list : user.getToDoLists()) {
+    //                 if (list.getNameOfList().equals(nameOfList)) {
+    //                     for (ToDo todo : list.getListOfToDo()) {
+    //                         if (todo.getName().equals(nameOfToDo)) {
 
-                                list.getListOfToDo().get(list.getListOfToDo().indexOf(todo)).setName(nameOfToDo);
+    //                             list.getListOfToDo().get(list.getListOfToDo().indexOf(todo)).setName(nameOfToDo);
 
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
     public static void setToDoAsDone(String username, String nameOfList, String nameOfToDo) {
-        for (User user : ThetaskApplication.userlist.getUserList()) {
+        for (User user : UserList.getUserList()) {
             if (user.getUsername().equals(username)) {
                 for (ListOfToDos list : user.getToDoLists()) {
                     if (list.getNameOfList().equals(nameOfList)) {
@@ -87,11 +84,11 @@ public class ListOfToDos {
     }
 
     public ArrayList<ToDo> getListOfToDo() {
-        return ListOfToDo;
+        return ListOfToDos;
     }
 
     public void setListOfToDo(ArrayList<ToDo> listOfToDo) {
-        ListOfToDo = listOfToDo;
+        ListOfToDos = listOfToDo;
     }
 
     public String getNameOfList() {
@@ -102,12 +99,5 @@ public class ListOfToDos {
         this.nameOfList = nameOfList;
     }
 
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
 
 }

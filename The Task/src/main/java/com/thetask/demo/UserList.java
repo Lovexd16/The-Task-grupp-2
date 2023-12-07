@@ -3,7 +3,7 @@ package com.thetask.demo;
 import java.util.ArrayList;
 
 public class UserList {
-    private  ArrayList<User> userList = new ArrayList<>();
+    private  static ArrayList<User> userList = new ArrayList<>();
 
 
     public void addUser(String username, String password) {
@@ -15,7 +15,7 @@ public class UserList {
         return false;
     }
 
-    public ArrayList<User> getUserList() {
+    public static ArrayList<User> getUserList() {
         return userList;
     }
 

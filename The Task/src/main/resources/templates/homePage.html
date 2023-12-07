@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -15,54 +15,29 @@
 
 <body>
 
-    <h1>Userlists</h1>
-
-    <div class="scrollBox">
-        <ul>
-            <li class="List" th:id="${lists.id}" th:each="lists : ${userLists}"><br/>
-                <a th:href="@{/list/{nameoflist}(nameoflist=${lists.nameOfList})}"><br/>
-                     <span th:text="${lists.nameOfList}"></span>
-                     <div>
-                        <a th:href = "@{/removeList/{listid}(listid=${lists.id})}">
-                            <button id="removeBtn">Ta bort</button></a>
-                     </div>        
-            </li>
-        </ul>
-    </div>
-    <div class="addList">
-        <form id="addForm" method="post" th:action="@{/adduserList}" th:object="${newList}">  
-            Listnamn:</br/>
-            <input type="text" id="listNameInput" th:field="*{nameOfList}" required><br/><br/>
-            <button id="addBtn"type="submit">Lägg till lista</button>
-        </form>
-    </div>
-
- <form method="post" th:action="@{/addToDo}">
-    <div class = "inputs">
-        <input type="text" id="taskInput" placeholder="Name">
-        <input type="text" id="dateInput" placeholder="Date (DD/MM)">
-        <input type="text" id="timeInput" placeholder="Time (HH:MM)">
-        <button onclick="addTask()">Add</button>
-    </div>
- </form>
-    
-    <div class = "areaContainer">
-        <div id="toDoArea" class="toDoArea">
-            <div class="areaHeader">Todo</div>
-        </div>
-        <div id="doneArea" class="doneArea">
-            <div class="areaHeader">Done</div>
-        </div>
+    <body>
+        <h2>User: <span th:text="${user.username}"></span></h2>
         <div class="scrollBox">
-            <div class ="listHeader">Lists</div>
-            <button id="newListBtn" onclick="newListBtn()">New List</button>
+            <form method="post" action="/addToDoList">
+                <input type="text" name="nameOfList" placeholder= "Listname" required>
+                <button type="submit">Add list</button>
+            </form>
+                <div class="lists">
+                    <ul>
+                        <li class="List" th:each="list : ${listOfLists}">
+                            <a th:href="@{/list/{list}(list=${list.nameOfList})}">
+                                 <span th:text="${list.nameOfList}"></span></a> 
+                                <a  th:href="@{/list/delete/{list}(list=${list.nameOfList})}">
+                                    <button>ta bort</button>          
+                                </a>
+                        </li>
+                    </ul>
+                </div>
         </div>
-    </div>
-
-    <div id = "logoutBtn">
-        <button onclick="logout()">Log out</button>
-    </div>
-         
+        <div id="logoutBtn">
+            <button onclick="logout()">Log out</button>
+        </div>
+    </body>
 </body>
 
 </html>
