@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${theNameOfList}"></title>
+    <link rel="stylesheet" href="/listStyle.css"> 
+</head>
+<body>
+    <h2>Lista: <span th:text="${theNameOfList}" name="listName"></span></h2>
+    <div class="scrollBox">
+        <div class="scrollBox">
+
+            <form method="post" action="/addtodo">
+                <label>Todo:</label>
+                <input type="text" name="name" required><br>
+    
+                <label>Deadline:</label>
+    
+                <input type="date" name="date" id="date" required>
+                <input type="time" name="time" id="time" required>
+    
+                <input type="hidden" name="listName" th:value="${theNameOfList}" >
+                
+                <button type="submit">Lägg till</button>
+            </form>
+
+            <div class="todos">
+                <ul>
+                    <li class="todos"  th:each="todo : ${listOfToDos}">
+                             <span th:text="${todo.name} + ' ' + ${todo.date} + ' ' + ${todo.time}"></span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <a href="/home"><u>Tillbaka till alla listor</u></a>
+            <div class="lists">
+                <ul>
+                    <!-- <li class="List" th:each="list : ${listOfLists}">
+                        <a th:href="@{/list/{list}(list=${list.nameOfList})}">
+                             <span th:text="${list.nameOfList}"></span></a> 
+                            <a  th:href="@{/list/delete/{list}(list=${list.nameOfList})}">
+                                <button>ta bort</button>          
+                            </a>
+                    </li> -->
+                </ul>
+            </div>
+    </div>
+    <div id="logoutBtn">
+        <button onclick="logout()">Log out</button>
+    </div>
+</body>
+</html>
