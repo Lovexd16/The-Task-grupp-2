@@ -27,6 +27,7 @@ public class ListOfToDosController {
 
         List<ListOfToDos> userLists = getUserTodoLists(loggedInUser);
         model.addAttribute("todoLists", userLists);
+        model.addAttribute("user", loggedInUser);
         return "homePage";
     }
 
