@@ -1,11 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="/scriptForHomePage.js" defer></script>
+    <link rel="stylesheet" href="/homeStyle.css"> 
+
 </head>
 <body>
+    <h2>List: <span th:text="${todolistname}"></span></h2>
     <div class="scrollBox">
         <form method="post" action="/addtodo">
             <label>Att göra:</label>
@@ -32,3 +37,4 @@
     
 </body>
 </html>
+

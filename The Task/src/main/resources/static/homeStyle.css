@@ -1,52 +1,11 @@
 
 body{
     background-color: rgb(77, 77, 110);
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     width: 100%;
     margin:0;
     padding:0;
-}
-.inputs {
-    margin-top: 5%;
-    margin-left: 1%;
-}
-
-.areaContainer {
-    display: flex;
-    margin-left: 1%;
-    margin-top: 1%;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: large;
-}
-.areaHeader {
-    margin-left: 45%;
-    font-size: larger;
-    color: white;
-}
-.listHeader {
-        margin-left: 40%;
-        font-size: larger;
-        color: white;
-}
-.toDoArea{
-    
-    width: 30vw;
-    height: 60vh;
-    background-color: rgb(105, 120, 148);
-    outline: solid 2px rgb(49, 49, 85);
-    overflow: auto;
-    resize: none;
-    margin-right: 10px;
-}
-
-.doneArea{
-    width: 30vw;
-    height: 60vh;
-    background-color: rgb(105, 120, 148);
-    outline: solid 2px rgb(49, 49, 85);
-    overflow: auto;
-    resize: none;
-    margin-right: 10px;
+    margin-left:10px;
 
 }
 
@@ -57,10 +16,15 @@ body{
 }
 
 .scrollBox {
+    font-size: large;
     width: 15vw;
     height: 30vh;
     background-color: rgb(105, 120, 148);
     outline: solid 2px rgb(49, 49, 85);
     overflow: auto;
     resize: none;
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
+
+

@@ -3,43 +3,23 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="title"></title>
     <script src="/scriptForHomePage.js" defer></script>
-
     <link rel="stylesheet" href="/homeStyle.css"> 
-
 </head>
-
 <body>
-    <h1>Dina listor:</h1>
-          
-            <!-- <label>List:</label>
-            <select name="listId" required>
-                <option value="" disabled selected>Select a list</option>
-                <option th:each="todoList : ${todoLists}" th:value="${todoList.id}" th:text="${todoList.name}"></option>
-            </select><br> -->
-
-            <!-- <input type="text" id="timeInput" placeholder="Time (HH:MM)">
-            <button type="submit">Lägg till</button> -->
-       
-
+    <h2>User: <span th:text="${user.username}"></span></h2>
     <div class="scrollBox">
         <form method="post" action="/todolists">
-            <label>Name:</label>
-            <input type="text" name="name" required><br>
-            <button type="submit">Lägg till lista</button>
+            <input type="text" name="name" placeholder= "Listname" required>
+            <button type="submit">Add list</button>
             <div class="lists">
                 <ul>
-                    <li class="List" th:id="${todoList.id}" th:each="todoList : ${todoLists}"><br/>
-                        <a th:href="@{/list/{todolistname}(todolistname=${todoList.name})}"><br/>
-                             <span th:text="${todoList.name}"></span></a>
-                             <!-- <div>
-                                <a th:href = "@{/remove-member/{memberId}(memberId=${member.id})}">
-                                    <button id="removeBtn" onclick="removeAlert()">Ta bort</button>
-                             </div>        -->
+                    <li class="List" th:id="${todoList.id}" th:each="todoList : ${todoLists}">
+                        <a th:href="@{/list/{todolistname}(todolistname=${todoList.name})}">
+                             <span th:text="${todoList.name}"></span></a>                      
                     </li>
                 </ul>
             </div>
@@ -48,8 +28,6 @@
     <div id="logoutBtn">
         <button onclick="logout()">Log out</button>
     </div>
-    
-
 </body>
 
 </html>
