@@ -39,16 +39,13 @@ public class ListOfToDosController {
 
         ListOfToDos selectedTodoList = findTodoListById(todoListId);
         if (selectedTodoList == null || !selectedTodoList.getUser().equals(loggedInUser)) {
-            // Om todo-listan inte hittas eller tillhör inte inloggad användare, redirect
-            // eller hantera detta
+
             return "redirect:/home";
         }
 
         List<ListOfToDos> userLists = getUserTodoLists(loggedInUser);
         model.addAttribute("todoLists", userLists);
         model.addAttribute("selectedTodoList", selectedTodoList);
-
-        // Lägg till logik för att hämta och visa tasks för den valda todolistan
 
         return "homePage";
     }

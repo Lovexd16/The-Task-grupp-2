@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,20 +13,22 @@
 
             <label>Deadline:</label>
             <input type="datetime-local" name="deadline" required><br>
+
+            <input type="hidden" name="listName" th:value="${list.name}" />
+            
             <button type="submit">Lägg till</button>
-            </form>
+        </form>
     </div>
     <a href="/home"><u>Tillbaka till alla listor</u></a>
 
-   <div class="todos">
+    <div class="todos">
+        <h3>Uppgifter i ${list.name}</h3>
         <ul>
-            <li class="todos"  th:each="todo : ${todos}"><br/>
-                <!-- <a th:href="@{/list/{todolistname}(todolistname=${todoList.name})}"><br/> -->
-                     <span th:text="${todo.name} + ' ' + ${todo.deadline}"></span>
-                   
+            <li th:each="task : ${list.tasks}">
+                <span th:text="${task.name} + ' ' + ${task.deadline}"></span>
             </li>
         </ul>
-    </div> 
+    </div>
     
 </body>
 </html>
