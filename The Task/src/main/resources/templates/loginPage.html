@@ -38,7 +38,8 @@
         <div class="box2">
             <u>Ej registrerad</u><br/><br/>
             <u>Användarnamn</u><br/><br/>
-            <!-- <p class="errorMessage" th:text="${errorMessageForCreatingUser}"></p> -->
+            <p class="successMessage" th:text="${successMessage}"></p>
+            <p class="errorMessage" th:text="${errorMessageForCreatingUser}"></p>
             <input type="text" name="username" required><br/><br/>
             <u>Lösenord</u><br/><br/>
             <input type="password" name="password" required><br/><br/>

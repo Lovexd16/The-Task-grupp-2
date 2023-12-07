@@ -51,9 +51,9 @@ function addTask() {
 
     todoArea.appendChild(output);
 
-    // taskInput.value = '';
-    // dateInput.value = '';
-    // timeInput.value = '';
+    taskInput.value = '';
+    dateInput.value = '';
+    timeInput.value = '';
 }
 function moveTaskToDone(output) {
     var todoArea = document.querySelector('.toDoArea');
