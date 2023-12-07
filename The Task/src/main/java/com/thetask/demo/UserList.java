@@ -1,26 +1,25 @@
-package com.thetask.demo;
+// package com.thetask.demo;
 
-import java.util.ArrayList;
+// import java.util.ArrayList;
 
-public class UserList {
-    private  ArrayList<User> userList = new ArrayList<>();
+// public class UserList {
+// private ArrayList<User> userList = new ArrayList<>();
 
+// public void addUser(String username, String password) {
+// userList.add(new User(username, password));
+// }
 
-    public void addUser(String username, String password) {
-        userList.add(new User(username, password));
-    }
+// public boolean checkUserNameExists(String username) {
 
-    public boolean checkUserNameExists(String username) {
+// return false;
+// }
 
-        return false;
-    }
+// public ArrayList<User> getUserList() {
+// return userList;
+// }
 
-    public ArrayList<User> getUserList() {
-        return userList;
-    }
+// public void setUserList(ArrayList<User> userList) {
+// this.userList = userList;
+// }
 
-    public void setUserList(ArrayList<User> userList) {
-        this.userList = userList;
-    }
-
-}
+// }

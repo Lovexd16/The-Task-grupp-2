@@ -7,46 +7,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="title"></title>
-    <script src="scriptForHomePage.js" defer></script>
+    <script src="/scriptForHomePage.js" defer></script>
 
-    <link rel="stylesheet" href="homeStyle.css"> 
+    <link rel="stylesheet" href="/homeStyle.css"> 
 
 </head>
 
 <body>
-
     <h1>Userlists</h1>
 
     <div class="scrollBox">
-        <ul>
-            <li class="List" th:id="${lists.id}" th:each="lists : ${userLists}"><br/>
-                <a th:href="@{/list/{nameoflist}(nameoflist=${lists.nameOfList})}"><br/>
-                     <span th:text="${lists.nameOfList}"></span>
-                     <div>
-                        <a th:href = "@{/removeList/{listid}(listid=${lists.id})}">
-                            <button id="removeBtn">Ta bort</button></a>
-                     </div>        
-            </li>
-        </ul>
-    </div>
-    <div class="addList">
-        <form id="addForm" method="post" th:action="@{/adduserList}" th:object="${newList}">  
-            Listnamn:</br/>
-            <input type="text" id="listNameInput" th:field="*{nameOfList}" required><br/><br/>
-            <button id="addBtn"type="submit">Lägg till lista</button>
+        <form method="post" action="/tasks">
+            <label>Description:</label>
+            <input type="text" name="name" required><br>
+
+            <label>Deadline:</label>
+            <input type="date" name="deadline" required><br>
+            
+            <label>List:</label>
+            <select name="listId" required>
+                <option value="" disabled selected>Select a list</option>
+                <option th:each="todoList : ${todoLists}" th:value="${todoList.id}" th:text="${todoList.name}"></option>
+            </select><br>
+
+            <input type="text" id="timeInput" placeholder="Time (HH:MM)">
+            <button type="submit">Lägg till</button>
         </form>
     </div>
 
- <form method="post" th:action="@{/addToDo}">
-    <div class = "inputs">
-        <input type="text" id="taskInput" placeholder="Name">
-        <input type="text" id="dateInput" placeholder="Date (DD/MM)">
-        <input type="text" id="timeInput" placeholder="Time (HH:MM)">
-        <button onclick="addTask()">Add</button>
+    <div class="scrollBox">
+        <form method="post" action="/todolists">
+            <label>Name:</label>
+            <input type="text" name="name" required><br>
+            <button type="submit">Lägg till lista</button>
+        </form>
     </div>
- </form>
-    
-    <div class = "areaContainer">
+
+    <div class="areaContainer">
         <div id="toDoArea" class="toDoArea">
             <div class="areaHeader">Todo</div>
         </div>
@@ -54,15 +51,15 @@
             <div class="areaHeader">Done</div>
         </div>
         <div class="scrollBox">
-            <div class ="listHeader">Lists</div>
+            <div class="listHeader">Lists</div>
             <button id="newListBtn" onclick="newListBtn()">New List</button>
         </div>
     </div>
 
-    <div id = "logoutBtn">
+    <div id="logoutBtn">
         <button onclick="logout()">Log out</button>
     </div>
-         
+
 </body>
 
 </html>
