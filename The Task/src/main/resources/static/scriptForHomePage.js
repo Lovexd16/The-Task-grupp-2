@@ -1,17 +1,12 @@
-
-
-// if (!localStorage.getItem("loggedInAs")) {
-//     window.location.href = "/";
-// }
-// let title = document.getElementById("title");
-// title.textContent = localStorage.getItem("loggedInAs");
-
-setInterval(checkDeadline, 60000);
+setInterval(checkDeadline, 10000);
 
 function checkDeadline() {
-    var deadlineInput = document.getElementById("deadline").value;
-    var deadline = new Date(deadlineInput);
-    var now = new Date();
+    let now = new Date();
+    let dateInput = document.getElementById("date").value;
+    let timeInput = document.getElementById("time").value;
+
+    let deadlineDate = new Date(dateInput);
+    let deadlineTime = new Date(timeInput);
 
     if (deadline < now) {
         deadlineInputElement.style.backgroundColor = 'red';
@@ -19,7 +14,7 @@ function checkDeadline() {
         deadlineInputElement.style.backgroundColor = '';
     }
 }
-
+console.log(deadlineDate);
 
 function logout() {  
     window.location.href = "/";

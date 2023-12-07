@@ -6,7 +6,6 @@ body{
     margin:0;
     padding:0;
     margin-left:10px;
-
 }
 
 #logoutBtn {
@@ -25,6 +24,7 @@ body{
     resize: none;
     border-radius: 10px;
     margin-bottom: 10px;
+    padding: 5px;
 }
 
 

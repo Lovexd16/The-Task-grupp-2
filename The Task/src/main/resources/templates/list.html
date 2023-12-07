@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Lists</title>
     <script src="/scriptForHomePage.js" defer></script>
     <link rel="stylesheet" href="/homeStyle.css"> 
 
@@ -13,10 +13,11 @@
     <h2>List: <span th:text="${todolistname}"></span></h2>
     <div class="scrollBox">
         <form method="post" action="/addtodo">
-            <label>Att göra:</label>
+            <label>Todo:</label>
             <input type="text" name="name" required><br>
 
             <label>Deadline:</label>
+
             <input type="datetime-local" name="deadline" required><br>
 
             <input type="hidden" name="listName" th:value="${list.name}" />
