@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,16 +35,15 @@ public class ToDoController {
     // }
 
     @PostMapping("/addtodo")
-    public String addTask(@RequestParam String name, @RequestParam LocalDateTime deadline,
-            Model model) {
+public String addTask(@RequestParam String name, @RequestParam LocalDate date, @RequestParam LocalTime time, Model model) {
+    
+    ToDo todo = new ToDo(name, date, time);
+    todos.add(todo);
+    System.out.println("Ny uppgift: " + todo.getName());
 
-        ToDo todo = new ToDo(name, deadline);
-        todos.add(todo);
-        System.out.println("ny" + todo.getName());
-
-        model.addAttribute("todos", todos);
-        return "list";
-    }
+    model.addAttribute("todos", todos);
+    return "list";
+}
 
     private ListOfToDos findTodoListById(Long listoftodosId) {
         List<ListOfToDos> todoLists = listoftodosController.getTodoLists();
