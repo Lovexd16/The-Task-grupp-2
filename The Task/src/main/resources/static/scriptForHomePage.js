@@ -1,8 +1,8 @@
-if (!localStorage.getItem("loggedInAs")) {
-    window.location.href = "/login";
-}
-let title = document.getElementById("title");
-title.textContent = localStorage.getItem("loggedInAs");
+// if (!localStorage.getItem("loggedInAs")) {
+//     window.location.href = "/";
+// }
+// let title = document.getElementById("title");
+// title.textContent = localStorage.getItem("loggedInAs");
 
 function addTask() {
     var taskInput = document.getElementById('taskInput');
@@ -51,9 +51,9 @@ function addTask() {
 
     todoArea.appendChild(output);
 
-    taskInput.value = '';
-    dateInput.value = '';
-    timeInput.value = '';
+    // taskInput.value = '';
+    // dateInput.value = '';
+    // timeInput.value = '';
 }
 function moveTaskToDone(output) {
     var todoArea = document.querySelector('.toDoArea');
@@ -127,3 +127,9 @@ function isValidTime(timeText) {
     var timeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/;
     return timeRegex.test(timeText);
 }
+
+function logout() {
+    
+    window.location.href = "/";
+}
+

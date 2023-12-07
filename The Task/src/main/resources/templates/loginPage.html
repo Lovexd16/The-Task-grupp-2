@@ -8,26 +8,40 @@
     <script type="text/javascript" th:src="@{/scriptForLoginPage.js}" defer></script>
 </head>
 <body>
-    <form method="post" th:action="@{/loginUser}">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.username}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <form method="post" th:action="@{/users/login}">
         <div class="box">
             <u>Registrerad</u><br/><br/>
             <u>Användarnamn</u><br/><br/>
-            <input id="User1" type="användarnamn" name = "username1" required><br/><br/>
+            <input type="text" name="username" required><br/><br/>
             <u>Lösenord</u><br/><br/>
             <p class="errorMessage" th:text="${errorMessageForLogin}"></p>
-            <input id="password1" type="password" name = "password1" required><br/><br/>
+            <input type="password" name="password" required><br/><br/>
             <button id="loginBtn" type="submit">Logga in</button>
          </div>
     </form>
         
-   <form method="post" th:action="@{/newUser}">
+    <form method="post" action="/users">
         <div class="box2">
             <u>Ej registrerad</u><br/><br/>
             <u>Användarnamn</u><br/><br/>
-            <p class="errorMessage" th:text="${errorMessageForCreatingUser}"></p>
-            <input id="User2" type="användarnamn" name="username2" required><br/><br/>
+            <!-- <p class="errorMessage" th:text="${errorMessageForCreatingUser}"></p> -->
+            <input type="text" name="username" required><br/><br/>
             <u>Lösenord</u><br/><br/>
-            <input id="password2" type="password" name = "password2" required><br/><br/>
+            <input type="password" name="password" required><br/><br/>
             <button id="createUserBtn" type="submit" >Skapa användare</button>
         </div>
     </form>
