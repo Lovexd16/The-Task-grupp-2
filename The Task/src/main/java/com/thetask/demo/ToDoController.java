@@ -35,12 +35,30 @@ public class ToDoController {
 
     @PostMapping("/addtodo")
     public String addTask(@RequestParam String name, @RequestParam LocalDateTime deadline,
-            Model model) {
-
-        ToDo todo = new ToDo(name, deadline);
-        todos.add(todo);
-        System.out.println("ny" + todo.getName());
-
+            @RequestParam String listName, Model model) {
+        
+        
+        ListOfToDos currentList = null;
+        for (ListOfToDos list : listoftodosController.getTodoLists()) {
+            if (list.getName().equals(listName)) {
+                currentList = list;
+                break;
+            }
+        }
+    
+        if (currentList != null) {
+            
+            ToDo todo = new ToDo(name, deadline);
+            currentList.addTask(todo);
+            System.out.println("Ny uppgift i " + currentList.getName() + ": " + todo.getName());
+    
+            model.addAttribute("list", currentList);
+        } else {
+            
+            System.out.println("Listan med namnet " + listName + " hittades inte.");
+        }
+    
+        
         model.addAttribute("todos", todos);
         return "list";
     }
