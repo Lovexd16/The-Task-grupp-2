@@ -1,16 +1,12 @@
 package com.thetask.demo;
 
-import java.lang.reflect.Member;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,13 +14,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class TheTaskController {
-
-    // static final List<ListOfToDos> userLists = new ArrayList<>();
-    // static final List<ToDo> todoList = new ArrayList<>();
-
-    // static {
-    //     userLists.add(new ListOfToDos(null, "Renovering", UUID.randomUUID()));
-    // }
 
     User loggedInUser;
     
@@ -128,20 +117,7 @@ public class TheTaskController {
         return "homePage";
     }
 
-
-    // @GetMapping("/removeList/{listid}")
-    // String removeList(@PathVariable UUID listid) {
-    //     userLists.removeIf(lists -> lists.getId().equals(listid));
-    //     return "redirect:/home";
-    // }
-
-
-
-
-
-
-
-
+    
     public static User findUserByUsername (String username) {
         for (User user : UserList.getUserList()) {
             if (user.getUsername().equals(username)) {
@@ -164,144 +140,3 @@ public class TheTaskController {
     }
     
 }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-
-//     @GetMapping("/list/{nameOfList}")
-//     String getList(@PathVariable String nameOfList, Model model) {
-
-//         for (ListOfToDos list : TheTaskController.userLists) {
-//             if (list.getNameOfList().equals(nameOfList)) {
-//                 model.addAttribute("lists", new ListOfToDos(list.getListOfToDo(), list.getNameOfList(), list.getId()));
-//                 return "list";
-//             }
-//         }
-//         return "list";
-//     }
-
-    
-
-
-
-//     @PostMapping("/addNewList")
-//     String postAddNewList(@RequestParam("username") String username, @RequestParam("newListName") String newListName,
-//             Model model) {
-//         ThetaskApplication.addNewListForUser(username, newListName);
-//         for (User user : ThetaskApplication.userlist.getUserList()) {
-//             if (user.getUsername().equals(username)) {
-//                 model.addAttribute("listOfLists", user.getToDoLists());
-//                 return "redirect:/home";
-//             }
-//         }
-
-//         return "redirect:/home";
-//     }
-
-//     @PostMapping("/addNewToDo")
-//     String postAddNewToDo(@RequestParam("username") String username, @RequestParam("listName") String listName,
-//             @RequestParam("newToDoName") String newToDoName, @RequestParam("newToDoTime") long newToDoTime,
-//             Model model) {
-//         ThetaskApplication.addNewToDoForUser(username, listName, newToDoName, newToDoTime);
-//         for (User user : ThetaskApplication.userlist.getUserList()) {
-//             if (user.getUsername().equals(username)) {
-//                 model.addAttribute("listOfLists", user.getToDoLists());
-//                 return "redirect:/home";
-//             }
-//         }
-//         return "redirect:/home";
-//     }
-
-//     @PostMapping("/removeList")
-//     String postRemoveList(@RequestParam("username") String username, @RequestParam("listName") String listName,
-//             Model model) {
-//         ThetaskApplication.removeListForUser(username, listName);
-//         for (User user : ThetaskApplication.userlist.getUserList()) {
-//             if (user.getUsername().equals(username)) {
-//                 model.addAttribute("listOfLists", user.getToDoLists());
-//                 return "redirect:/home";
-//             }
-//         }
-//         return "redirect:/home";
-//     }
-
-//     @PostMapping("/removeToDo")
-//     String postRemoveToDo(@RequestParam("username") String username, @RequestParam("listName") String listName,
-//             @RequestParam("nameOfToDo") String nameOfToDo, Model model) {
-//         ListOfToDos.removeToDo(username, nameOfToDo, nameOfToDo);
-//         for (User user : ThetaskApplication.userlist.getUserList()) {
-//             if (user.getUsername().equals(username)) {
-//                 model.addAttribute("listOfLists", user.getToDoLists());
-//                 return "redirect:/home";
-//             }
-//         }
-//         return "redirect:/home";
-//     }
-
-//     @PostMapping("/setToDoAsDone")
-//     String postSetToDoAsDone(@RequestParam("username") String username, @RequestParam("listName") String listName,
-//             @RequestParam("nameOfToDo") String nameOfToDo, Model model) {
-//         ListOfToDos.setToDoAsDone(username, listName, nameOfToDo);
-//         for (User user : ThetaskApplication.userlist.getUserList()) {
-//             if (user.getUsername().equals(username)) {
-//                 model.addAttribute("listOfLists", user.getToDoLists());
-//                 return "redirect:/home";
-//             }
-//         }
-//         return "redirect:/home";
-//     }
-
-//     @PostMapping("/editToDoTime")
-//     String postEditToDoTime(@RequestParam("username") String username, @RequestParam("listName") String listName,
-//             @RequestParam("nameOfToDo") String nameOfToDo,
-//             @RequestParam("newTimeOfToDo") long newTimeOfToDo, Model model) {
-
-//         ListOfToDos.editToDoTime(username, listName, nameOfToDo, newTimeOfToDo);
-//         for (User user : ThetaskApplication.userlist.getUserList()) {
-//             if (user.getUsername().equals(username)) {
-//                 model.addAttribute("listOfLists", user.getToDoLists());
-//                 return "redirect:/home";
-//             }
-//         }
-//         return "redirect:/home";
-//     }
-
-//     @PostMapping("/editToDoName")
-//     String postEditToDoName(@RequestParam("username") String username, @RequestParam("listName") String listName,
-//             @RequestParam("nameOfToDo") String nameOfToDo,
-//             @RequestParam("newNameOfToDo") String newNameOfToDo, Model model) {
-//         ListOfToDos.editToDoName(username, listName, nameOfToDo, newNameOfToDo);
-//         for (User user : ThetaskApplication.userlist.getUserList()) {
-//             if (user.getUsername().equals(username)) {
-//                 model.addAttribute("listOfLists", user.getToDoLists());
-//                 return "redirect:/home";
-//             }
-//         }
-//         return "redirect:/home";
-//     }
-// }
