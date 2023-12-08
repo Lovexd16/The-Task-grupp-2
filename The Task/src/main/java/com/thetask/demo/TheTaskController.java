@@ -27,6 +27,8 @@ public class TheTaskController {
     // }
 
     User loggedInUser;
+    
+    ListOfToDos currentList;
 
     @GetMapping("/")
     String getStart(Model model) {
@@ -94,18 +96,22 @@ public class TheTaskController {
         return "redirect:/home";
     }
 
+    @GetMapping("/list") 
+    String getListPage (Model model) {
+        model.addAttribute("theNameOfList", currentList.getNameOfList());
+        model.addAttribute("listOfToDos", currentList.getListOfToDo());
+        return "list";
+    }
+
     @GetMapping ("/list/{nameOfList}")
     String getList (@PathVariable String nameOfList, Model model) {
+
         for (ListOfToDos list : loggedInUser.getToDoLists()) {
             if (list.getNameOfList().equals(nameOfList)) {
-                System.out.println("hamnar rätt");
-                model.addAttribute("theNameOfList", list.getNameOfList());
-                model.addAttribute("listOfToDos", list.getListOfToDo());
-                System.out.println(list.getNameOfList());
-                return "list";
+                currentList = list;
+                return "redirect:/list";
             }
         }
-        // model.addAttribute("listsOfToDos", loggedInUser.getToDoLists());
         return "list";
     }
 
@@ -116,7 +122,7 @@ public class TheTaskController {
             if (list.getNameOfList().equals(listName)) {
                 System.out.println(name + date + time + listName);
                 list.getListOfToDo().add(new ToDo(name, date, time, false));
-                return "redirect:/home";
+                return "redirect:/list";
             }
         }
         return "homePage";
@@ -158,6 +164,14 @@ public class TheTaskController {
     }
     
 }
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
