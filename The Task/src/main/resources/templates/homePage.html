@@ -1,34 +1,26 @@
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="title"></title>
-    <script src="scriptForHomePage.js" defer></script>
-
-    <link rel="stylesheet" href="homeStyle.css"> 
-
+    <link rel="stylesheet" href="style.css">
+    <script src="scriptForList.js" defer></script> 
 </head>
-
 <body>
-
-    <body>
-        <h2>User: <span th:text="${user.username}"></span></h2>
-        <div class="scrollBox">
-            <form method="post" action="/addToDoList">
-                <input type="text" name="nameOfList" placeholder= "Listname" required>
-                <button type="submit">Add list</button>
-            </form>
+    <h2>User: <span th:text="${user.username}"></span></h2>
+    <div class="scrollBox">
+        <form method="post" action="/addToDoList">
+            <input type="text" name="nameOfList" placeholder= "Listname" required>
+            <button type="submit">Add list</button>
+        </form>
                 <div class="lists">
                     <ul>
                         <li class="List" th:each="list : ${listOfLists}">
                             <a th:href="@{/list/{list}(list=${list.nameOfList})}">
                                  <span th:text="${list.nameOfList}"></span></a> 
                                 <a  th:href="@{/list/delete/{list}(list=${list.nameOfList})}">
-                                    <button>ta bort</button>          
+                                    <button>X</button>          
                                 </a>
                         </li>
                     </ul>
@@ -36,8 +28,6 @@
         </div>
         <div id="logoutBtn">
             <button onclick="logout()">Log out</button>
-        </div>
-    </body>
+    </div>
 </body>
-
 </html>

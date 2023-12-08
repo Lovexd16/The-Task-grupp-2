@@ -4,49 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="${theNameOfList}"></title>
-    <link rel="stylesheet" href="/listStyle.css"> 
+    <link rel="stylesheet" href="/style.css"> 
+    <script type="text/javascript" th:src="@{/scriptForList.js}" defer></script>
 </head>
 <body>
-    <h2>Lista: <span th:text="${theNameOfList}" name="listName"></span></h2>
-    <div class="scrollBox">
-        <div class="scrollBox">
-
+    <h2>List: <span th:text="${theNameOfList}" name="listName"></span></h2>
+    <div class="scrollBox">   
             <form method="post" action="/addtodo">
                 <label>Todo:</label>
                 <input type="text" name="name" required><br>
-    
                 <label>Deadline:</label>
-    
                 <input type="date" name="date" id="date" required>
-                <input type="time" name="time" id="time" required>
-    
-                <input type="hidden" name="listName" th:value="${theNameOfList}" >
-                
-                <button type="submit">Lägg till</button>
+                <input type="time" name="time" id="time" required> 
+                <input type="hidden" name="listName" th:value="${theNameOfList}" >               
+                <button type="submit">Add</button>
             </form>
-
             <div class="todos">
                 <ul>
-                    <li class="todos"  th:each="todo : ${listOfToDos}">
+                    <li class="todo"  th:each="todo : ${listOfToDos}"onclick="toggleTodo(this)">
                              <span th:text="${todo.name} + ' ' + ${todo.date} + ' ' + ${todo.time}"></span>
+                             <button>X</button> 
+                                
+                             
+                            
                     </li>
-                </ul>
-            </div>
-
-        </div>
-        <a href="/home"><u>Tillbaka till alla listor</u></a>
-            <div class="lists">
-                <ul>
-                    <!-- <li class="List" th:each="list : ${listOfLists}">
-                        <a th:href="@{/list/{list}(list=${list.nameOfList})}">
-                             <span th:text="${list.nameOfList}"></span></a> 
-                            <a  th:href="@{/list/delete/{list}(list=${list.nameOfList})}">
-                                <button>ta bort</button>          
-                            </a>
-                    </li> -->
-                </ul>
-            </div>
+                </ul>               
+            </div>  
     </div>
+    <form action="/home" method="get">
+        <button type="submit"> Home</button>                        
+    </form>     
     <div id="logoutBtn">
         <button onclick="logout()">Log out</button>
     </div>
