@@ -23,10 +23,6 @@
                 <ul>
                     <li class="todo"  th:each="todo : ${listOfToDos}"onclick="toggleTodo(this)">
                              <span th:text="${todo.name} + ' ' + ${todo.date} + ' ' + ${todo.time}"></span>
-                             <button>X</button> 
-                                
-                             
-                            
                     </li>
                 </ul>               
             </div>  
